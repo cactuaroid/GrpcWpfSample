@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+// well known types
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "GrpcWpfSample.Common";
+
+package GrpcWpfSample.Common;
+
+service Chat {
+  rpc Chat(stream ChatLog) returns (stream ChatLog) {}
+}
+
+message ChatLog {
+	string name = 1;
+	string content = 2;
+	google.protobuf.Timestamp at = 3;
+}
