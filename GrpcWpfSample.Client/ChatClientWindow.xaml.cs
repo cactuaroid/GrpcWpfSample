@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Google.Protobuf.WellKnownTypes;
+using GrpcWpfSample.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +20,21 @@ namespace GrpcWpfSample.Client
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ChatClientWindow : Window
     {
-        public MainWindow()
+        public ChatClientWindow()
         {
             InitializeComponent();
+            DataContext = new ChatClientWindowViewModel();
+        }
+
+        private void BodyTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                (DataContext as ChatClientWindowViewModel).WriteCommand.Execute(Body.Text);
+                Body.Text = "";
+            }
         }
     }
 }

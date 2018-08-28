@@ -2,13 +2,15 @@ syntax = "proto3";
 
 // well known types
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 
 option csharp_namespace = "GrpcWpfSample.Common";
 
 package GrpcWpfSample.Common;
 
 service Chat {
-  rpc Chat(stream ChatLog) returns (stream ChatLog) {}
+  rpc Write(ChatLog) returns (google.protobuf.Empty) {}
+  rpc Read(google.protobuf.Empty) returns (stream ChatLog) {}
 }
 
 message ChatLog {
