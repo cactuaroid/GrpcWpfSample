@@ -37,7 +37,7 @@ namespace GrpcWpfSample.Client
         private void StartReadingChatServer()
         {
             Task.Run(async () =>
-                await m_chatService.Read((x) =>
+                await m_chatService.Subscribe((x) =>
                     ChatHistory.Add($"{x.At.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}")));
         }
 

@@ -22,9 +22,9 @@ namespace GrpcWpfSample.Client
             await m_client.WriteAsync(chatLog);
         }
 
-        public async Task Read(Action<ChatLog> onRead)
+        public async Task Subscribe(Action<ChatLog> onRead)
         {
-            using (var call = m_client.Read(new Empty()))
+            using (var call = m_client.Subscribe(new Empty()))
             {
                 var stream = call.ResponseStream;
                 while (await stream.MoveNext())

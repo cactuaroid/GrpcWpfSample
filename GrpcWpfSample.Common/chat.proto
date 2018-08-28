@@ -10,7 +10,7 @@ package GrpcWpfSample.Common;
 
 service Chat {
   rpc Write(ChatLog) returns (google.protobuf.Empty) {}
-  rpc Read(google.protobuf.Empty) returns (stream ChatLog) {}
+  rpc Subscribe(google.protobuf.Empty) returns (stream ChatLog) {}
 }
 
 message ChatLog {
