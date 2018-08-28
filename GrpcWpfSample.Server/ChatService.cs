@@ -14,11 +14,7 @@ namespace GrpcWpfSample.Server
 
         public override async Task Subscribe(Empty request, IServerStreamWriter<ChatLog> responseStream, ServerCallContext context)
         {
-            var oldItems = m_repository.GetAll();
-            foreach (var item in oldItems)
-            {
-                await responseStream.WriteAsync(item);
-            }
+            var oldItems = Enumerable.Empty<ChatLog>();
 
             while (true)
             {
