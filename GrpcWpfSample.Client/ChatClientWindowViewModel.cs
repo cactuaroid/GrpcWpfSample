@@ -38,7 +38,7 @@ namespace GrpcWpfSample.Client
         {
             Task.Run(async () =>
                 await m_chatService.Read((x) =>
-                    ChatHistory.Add(x.ToString())));
+                    ChatHistory.Add($"{x.At.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}")));
         }
 
         private async void WriteCommandExecute(string content)
