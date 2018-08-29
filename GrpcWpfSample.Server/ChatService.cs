@@ -14,25 +14,21 @@ namespace GrpcWpfSample.Server
 
         public override async Task Subscribe(Empty request, IServerStreamWriter<ChatLog> responseStream, ServerCallContext context)
         {
-            var oldItems = Enumerable.Empty<ChatLog>();
+            // WriteAsync() has to be 'Wait()' because calling WriteAsync() has to be one by one, not parallelly.
+            await m_repository.GetAllAsync()
+                .ForEachAsync((x) => responseStream.WriteAsync(x).Wait());
 
-            while (true)
-            {
-                var newItems = m_repository.GetAll();
-                var diffItems = newItems.Except(oldItems).ToArray();
-                oldItems = newItems.ToArray();
-
-                foreach (var item in diffItems)
-                {
-                    await responseStream.WriteAsync(item);
-                }
-
-                await Task.Delay(1000);
-            }
+            // never completes
         }
 
         public override Task<Empty> Write(ChatLog request, ServerCallContext context)
         {
+            // If this Write() directly write to the 'responseStream' of Subscribe(), it raises exception because these are in different RPC calling.
+            // It is same even if using event, because it is actually just invoking some methods. IObservable neither.
+            // The only way to trigger writing to the stream which is awaited in different RPC calling is that
+            // 'await' a signal (Task completion) on stream owner side and trigger the task completion on the other side.
+            // This is why I implement ChatLogRepository with AsyncAutoResetEvent.
+
             m_repository.Add(request);
 
             return Task.FromResult(new Empty());
