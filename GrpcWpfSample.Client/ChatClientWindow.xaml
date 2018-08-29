@@ -18,7 +18,8 @@
                      Text="{Binding Name}"/>
             <TextBox x:Name="Body"
                      Width="700"
-                     KeyDown="BodyTextBox_KeyDown"/>
+                     KeyDown="BodyTextBox_KeyDown"
+                     Loaded="Body_Loaded" />
         </StackPanel>
     </StackPanel>
 </Window>

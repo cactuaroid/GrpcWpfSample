@@ -21,7 +21,7 @@ namespace GrpcWpfSample.Client
             get { return m_name; }
             set { SetProperty(ref m_name, value); }
         }
-        private string m_name = "";
+        private string m_name = "anonymous";
 
         public DelegateCommand<string> WriteCommand { get; private set; }
 

@@ -36,5 +36,10 @@ namespace GrpcWpfSample.Client
                 Body.Text = "";
             }
         }
+
+        private void Body_Loaded(object sender, RoutedEventArgs e)
+        {
+            Body.Focus();
+        }
     }
 }
