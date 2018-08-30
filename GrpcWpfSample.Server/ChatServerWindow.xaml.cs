@@ -12,23 +12,12 @@ namespace GrpcWpfSample.Server
         public ChatServerWindow()
         {
             InitializeComponent();
+            DataContext = new ChatServerWindowViewModel();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Start();
-        }
-
-        private void Start()
-        {
-            const int Port = 50052;
-
-            var server = new Grpc.Core.Server
-            {
-                Services = { Chat.BindService(new ChatService()) },
-                Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
-            };
-            server.Start();
+            (DataContext as ChatServerWindowViewModel).StartServer();
         }
     }
 }

@@ -10,7 +10,9 @@ namespace GrpcWpfSample.Server
 {
     public class ChatService : Chat.ChatBase
     {
-        private IChatLogRepository m_repository = new ChatLogRepository(); // DI is better for separating persistence layer
+        private readonly IChatLogRepository m_repository;
+
+        public ChatService(IChatLogRepository repository) => m_repository = repository;
 
         public override async Task Subscribe(Empty request, IServerStreamWriter<ChatLog> responseStream, ServerCallContext context)
         {

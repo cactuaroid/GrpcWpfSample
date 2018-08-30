@@ -99,6 +99,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ChatServer.cs" />
+    <Compile Include="ChatServerWindowViewModel.cs" />
     <Compile Include="Persistence\ChatLogRepository.cs" />
     <Compile Include="ChatService.cs" />
     <Compile Include="IChatLogRepository.cs" />
