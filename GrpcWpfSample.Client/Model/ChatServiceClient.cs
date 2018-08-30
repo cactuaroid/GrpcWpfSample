@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GrpcWpfSample.Client
+namespace GrpcWpfSample.Client.Model
 {
     class ChatServiceClient
     {

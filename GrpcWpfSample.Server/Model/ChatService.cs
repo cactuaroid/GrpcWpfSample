@@ -1,12 +1,11 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using GrpcWpfSample.Common;
-using GrpcWpfSample.Server.Persistence;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 
-namespace GrpcWpfSample.Server
+namespace GrpcWpfSample.Server.Model
 {
     public class ChatService : Chat.ChatBase
     {

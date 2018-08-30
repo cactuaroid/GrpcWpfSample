@@ -1,4 +1,5 @@
 ﻿using GrpcWpfSample.Common;
+using GrpcWpfSample.Server.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;

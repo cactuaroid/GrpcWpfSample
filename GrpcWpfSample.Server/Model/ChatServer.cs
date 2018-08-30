@@ -1,13 +1,10 @@
 ﻿using Grpc.Core;
 using GrpcWpfSample.Common;
 using GrpcWpfSample.Server.Persistence;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace GrpcWpfSample.Server
+namespace GrpcWpfSample.Server.Model
 {
     public class ChatServer
     {

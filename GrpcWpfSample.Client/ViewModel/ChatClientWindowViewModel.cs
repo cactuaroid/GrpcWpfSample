@@ -1,4 +1,5 @@
 ﻿using Google.Protobuf.WellKnownTypes;
+using GrpcWpfSample.Client.Model;
 using GrpcWpfSample.Common;
 using Prism.Commands;
 using Prism.Mvvm;

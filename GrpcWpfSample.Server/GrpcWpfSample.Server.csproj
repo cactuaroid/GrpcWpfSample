@@ -91,7 +91,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="ChatServerWindow.xaml">
+    <Page Include="View\ChatServerWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -99,12 +99,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ChatServer.cs" />
-    <Compile Include="ChatServerWindowViewModel.cs" />
+    <Compile Include="Model\ChatServer.cs" />
+    <Compile Include="ViewModel\ChatServerWindowViewModel.cs" />
     <Compile Include="Persistence\ChatLogRepository.cs" />
-    <Compile Include="ChatService.cs" />
-    <Compile Include="IChatLogRepository.cs" />
-    <Compile Include="ChatServerWindow.xaml.cs">
+    <Compile Include="Model\ChatService.cs" />
+    <Compile Include="Model\IChatLogRepository.cs" />
+    <Compile Include="View\ChatServerWindow.xaml.cs">
       <DependentUpon>ChatServerWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>

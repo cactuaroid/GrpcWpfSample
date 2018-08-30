@@ -1,13 +1,10 @@
-﻿using GrpcWpfSample.Server.Persistence;
-using System;
-using System.Collections.Generic;
+﻿using GrpcWpfSample.Server.Model;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace GrpcWpfSample.Server
+namespace GrpcWpfSample.Server.ViewModel
 {
     public class ChatServerWindowViewModel
     {
