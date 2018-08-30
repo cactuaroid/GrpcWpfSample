@@ -8,18 +8,27 @@
         Title="MainWindow"
         Height="450"
         Width="800">
-    <StackPanel Orientation="Vertical">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="18" />
+        </Grid.RowDefinitions>
         <ListBox x:Name="History"
-                 Height="390"
+                 Grid.Row="0"
                  ItemsSource="{Binding ChatHistory}"/>
-        <StackPanel Orientation="Horizontal">
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
             <TextBox x:Name="Name"
-                     Width="100"
-                     Text="{Binding Name}"/>
+                     Grid.Column="0"
+                     Text="{Binding Name}" />
             <TextBox x:Name="Body"
-                     Width="700"
+                     Grid.Column="1"
                      KeyDown="BodyTextBox_KeyDown"
                      Loaded="Body_Loaded" />
-        </StackPanel>
-    </StackPanel>
+        </Grid>
+    </Grid>
 </Window>
