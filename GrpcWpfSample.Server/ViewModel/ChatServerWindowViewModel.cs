@@ -8,10 +8,10 @@ namespace GrpcWpfSample.Server.ViewModel
 {
     public class ChatServerWindowViewModel
     {
-        private ChatServer m_chatServer = new ChatServer();
+        private readonly ChatServer m_chatServer = new ChatServer();
 
         public ObservableCollection<string> ChatHistory { get; private set; } = new ObservableCollection<string>();
-        private object m_chatHistoryLockObject = new object();
+        private readonly object m_chatHistoryLockObject = new object();
 
         public ChatServerWindowViewModel()
         {

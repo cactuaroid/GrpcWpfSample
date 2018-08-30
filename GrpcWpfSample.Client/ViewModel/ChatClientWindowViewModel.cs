@@ -12,10 +12,10 @@ namespace GrpcWpfSample.Client
 {
     public class ChatClientWindowViewModel : BindableBase
     {
-        private ChatServiceClient m_chatService = new ChatServiceClient();
+        private readonly ChatServiceClient m_chatService = new ChatServiceClient();
 
         public ObservableCollection<string> ChatHistory { get; private set; } = new ObservableCollection<string>();
-        private object m_chatHistoryLockObject = new object();
+        private readonly object m_chatHistoryLockObject = new object();
 
         public string Name
         {

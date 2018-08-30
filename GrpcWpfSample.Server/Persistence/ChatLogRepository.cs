@@ -8,8 +8,8 @@ namespace GrpcWpfSample.Server.Persistence
 {
     public class ChatLogRepository : IChatLogRepository
     {
-        private List<ChatLog> m_storage = new List<ChatLog>();
-        private AsyncAutoResetEvent<ChatLog> m_signal = new AsyncAutoResetEvent<ChatLog>();
+        private readonly List<ChatLog> m_storage = new List<ChatLog>();
+        private readonly AsyncAutoResetEvent<ChatLog> m_signal = new AsyncAutoResetEvent<ChatLog>();
 
         public void Add(ChatLog chatLog)
         {

@@ -9,7 +9,7 @@ namespace GrpcWpfSample.Server.Model
     public class ChatServer
     {
         private const int Port = 50052;
-        private IChatLogRepository m_repository = new ChatLogRepository(); // Using IoC container is better for separating persistence layer
+        private readonly IChatLogRepository m_repository = new ChatLogRepository(); // Using IoC container is better for separating persistence layer
 
         public void Start()
         {
