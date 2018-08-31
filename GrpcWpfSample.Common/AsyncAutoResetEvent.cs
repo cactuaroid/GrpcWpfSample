@@ -13,6 +13,11 @@ namespace GrpcWpfSample.Common
 
         public T Current { get; private set; }
 
+        public T Wait()
+        {
+            return WaitAsync().Result;
+        }
+
         public Task<T> WaitAsync()
         {
             lock (m_lock)

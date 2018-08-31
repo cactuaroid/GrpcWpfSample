@@ -20,15 +20,8 @@ namespace GrpcWpfSample.Server.Persistence
         public IAsyncEnumerable<ChatLog> GetAllAsync()
         {
             var oldLogs = m_storage.ToAsyncEnumerable();
-            var newLogs = AsyncEnumerable.CreateEnumerable(() =>
-                AsyncEnumerable.CreateEnumerator(
-                    async (token) =>
-                    {
-                        await m_signal.WaitAsync();
-                        return true; // the sequence never completes
-                    },
-                    () => m_signal.Current,
-                    () => { }));
+            var newLogs = AsyncEnumerable.Repeat(null as ChatLog)
+                .Select((x) => m_signal.Wait());
 
             return oldLogs.Concat(newLogs);
         }
