@@ -19,5 +19,25 @@ namespace GrpcWpfSample.Common
                 }
             }
         }
+
+        // from https://github.com/maca88/AsyncGenerator/issues/94#issuecomment-385286972
+        public static IAsyncEnumerable<TResult> SelectAsync<T, TResult>(this IEnumerable<T> enumerable, Func<T, Task<TResult>> selector)
+        {
+            return AsyncEnumerable.CreateEnumerable(() =>
+            {
+                var enumerator = enumerable.GetEnumerator();
+                var current = default(TResult);
+                return AsyncEnumerable.CreateEnumerator(async c =>
+                    {
+                        var moveNext = enumerator.MoveNext();
+                        current = moveNext
+                            ? await selector(enumerator.Current).ConfigureAwait(false)
+                            : default(TResult);
+                        return moveNext;
+                    },
+                    () => current,
+                    () => enumerator.Dispose());
+            });
+        }
     }
 }
