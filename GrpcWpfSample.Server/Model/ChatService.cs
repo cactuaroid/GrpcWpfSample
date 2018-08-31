@@ -15,9 +15,8 @@ namespace GrpcWpfSample.Server.Model
 
         public override async Task Subscribe(Empty request, IServerStreamWriter<ChatLog> responseStream, ServerCallContext context)
         {
-            // WriteAsync() has to be 'Wait()' because calling WriteAsync() has to be one by one, not parallelly.
             await m_repository.GetAllAsync()
-                .ForEachAsync((x) => responseStream.WriteAsync(x).Wait());
+                .ForEachTaskAsync(async (x) => await responseStream.WriteAsync(x));
 
             // never completes
         }
