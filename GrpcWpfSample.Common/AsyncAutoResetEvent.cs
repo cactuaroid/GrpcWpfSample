@@ -11,8 +11,6 @@ namespace GrpcWpfSample.Common
         private readonly List<TaskCompletionSource<T>> m_signalSources = new List<TaskCompletionSource<T>>();
         private readonly object m_lock = new object();
 
-        public T Current { get; private set; }
-
         public T Wait()
         {
             return WaitAsync().Result;
@@ -33,8 +31,6 @@ namespace GrpcWpfSample.Common
         {
             lock (m_lock)
             {
-                Current = value;
-
                 // Clear m_signalSources before calling SetResult() which synchronously restarts awaiters of WhenSet().
                 var sources = m_signalSources.ToArray();
                 m_signalSources.Clear();
