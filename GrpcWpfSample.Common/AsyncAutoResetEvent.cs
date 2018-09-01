@@ -8,31 +8,28 @@ namespace GrpcWpfSample.Common
 {
     public class AsyncAutoResetEvent<T>
     {
-        private readonly List<TaskCompletionSource<T>> m_signalSources = new List<TaskCompletionSource<T>>();
+        private TaskCompletionSource<T> m_source = new TaskCompletionSource<T>();
         private readonly object m_lock = new object();
 
         public Task<T> WaitAsync()
         {
             lock (m_lock)
             {
-                var source = new TaskCompletionSource<T>();
-                m_signalSources.Add(source);
-
-                return source.Task;
+                return m_source.Task;
             }
         }
 
         public void Set(T value)
         {
-            TaskCompletionSource<T>[] sources;
+            TaskCompletionSource<T> source;
             lock (m_lock)
             {
-                // Clear m_signalSources before calling SetResult() because SetResult() might call WaitAsync().
-                sources = m_signalSources.ToArray();
-                m_signalSources.Clear();
+                // Reset m_source before calling SetResult() because SetResult() might call WaitAsync().
+                source = m_source;
+                m_source = new TaskCompletionSource<T>();
             }
 
-            Parallel.ForEach(sources, (x) => x.SetResult(value));
+            source.SetResult(value);
         }
     }
 }
