@@ -11,11 +11,6 @@ namespace GrpcWpfSample.Common
         private readonly List<TaskCompletionSource<T>> m_signalSources = new List<TaskCompletionSource<T>>();
         private readonly object m_lock = new object();
 
-        public T Wait()
-        {
-            return WaitAsync().Result;
-        }
-
         public Task<T> WaitAsync()
         {
             lock (m_lock)
