@@ -31,7 +31,7 @@ namespace GrpcWpfSample.Common
         {
             lock (m_lock)
             {
-                // Clear m_signalSources before calling SetResult() which synchronously restarts awaiters of WhenSet().
+                // Clear m_signalSources before calling SetResult() because SetResult() might call WaitAsync().
                 var sources = m_signalSources.ToArray();
                 m_signalSources.Clear();
 
