@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 
 namespace GrpcWpfSample.Common
 {
@@ -13,9 +14,8 @@ namespace GrpcWpfSample.Common
 
         public void Invoke(T value)
         {
-            // Reset m_source before calling SetResult() because SetResult() might call Awaiter.
-            var source = m_source;
-            m_source = new TaskCompletionSource<T>();
+            // Get current m_source and reset it atomically
+            var source = Interlocked.Exchange(ref m_source, new TaskCompletionSource<T>());
 
             source.SetResult(value);
         }
