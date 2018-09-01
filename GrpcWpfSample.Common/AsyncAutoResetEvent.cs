@@ -24,17 +24,15 @@ namespace GrpcWpfSample.Common
 
         public void Set(T value)
         {
+            TaskCompletionSource<T>[] sources;
             lock (m_lock)
             {
                 // Clear m_signalSources before calling SetResult() because SetResult() might call WaitAsync().
-                var sources = m_signalSources.ToArray();
+                sources = m_signalSources.ToArray();
                 m_signalSources.Clear();
-
-                foreach (var source in sources)
-                {
-                    source.SetResult(value);
-                }
             }
+
+            Parallel.ForEach(sources, (x) => x.SetResult(value));
         }
     }
 }
