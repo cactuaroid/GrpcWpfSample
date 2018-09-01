@@ -21,7 +21,7 @@ namespace GrpcWpfSample.Server.Persistence
         {
             var oldLogs = m_storage.ToAsyncEnumerable();
             var newLogs = AsyncEnumerable.Repeat(null as ChatLog)
-                .Select((x) => m_signal.Wait());
+                .SelectAsync(async (x) => await m_signal.WaitAsync());
 
             return oldLogs.Concat(newLogs);
         }
