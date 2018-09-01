@@ -10,7 +10,7 @@ namespace GrpcWpfSample.Server.Model
     public class ChatService : Chat.ChatBase
     {
         private readonly IChatLogRepository m_repository;
-
+        private readonly Empty m_empty = new Empty();
         public ChatService(IChatLogRepository repository) => m_repository = repository;
 
         public override async Task Subscribe(Empty request, IServerStreamWriter<ChatLog> responseStream, ServerCallContext context)
@@ -31,7 +31,7 @@ namespace GrpcWpfSample.Server.Model
 
             m_repository.Add(request);
 
-            return Task.FromResult(new Empty());
+            return Task.FromResult(m_empty);
         }
     }
 }
