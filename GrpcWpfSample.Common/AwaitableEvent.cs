@@ -13,18 +13,12 @@ namespace GrpcWpfSample.Common
         /// <summary>
         /// 'await' this property to await Invoke() called.
         /// </summary>
-        public Task<AwaitableEventInvoked> Invoked
-        {
-            get { return m_source.Task; }
-        }
+        public Task<AwaitableEventInvoked> Invoked => m_source.Task;
 
         /// <summary>
         /// Invoke a event.
         /// </summary>
-        public void Invoke()
-        {
-            Invoke(null);
-        }
+        public void Invoke() => Invoke(null);
 
         /// <summary>
         /// Invoke a event with sender.
@@ -50,19 +44,13 @@ namespace GrpcWpfSample.Common
         /// <summary>
         /// 'await' this property to await Invoke() called.
         /// </summary>
-        public Task<AwaitableEventInvoked<T>> Invoked
-        {
-            get { return m_source.Task; }
-        }
+        public Task<AwaitableEventInvoked<T>> Invoked => m_source.Task;
 
         /// <summary>
         /// Invoke a event with argument.
         /// </summary>
         /// <param name="value">event argument</param>
-        public void Invoke(T value)
-        {
-            Invoke(null, value);
-        }
+        public void Invoke(T value) => Invoke(null, value);
 
         /// <summary>
         /// Invoke a event with sender and argument.
