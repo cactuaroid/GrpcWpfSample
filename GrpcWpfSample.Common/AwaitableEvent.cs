@@ -9,11 +9,12 @@ namespace GrpcWpfSample.Common
     public class AwaitableEvent
     {
         private TaskCompletionSource<AwaitableEventInvoked> m_source = new TaskCompletionSource<AwaitableEventInvoked>();
+        private readonly object m_lock = new object();
 
         /// <summary>
-        /// 'await' this property to await Invoke() called.
+        /// A task represents next Invoke() called event.
         /// </summary>
-        public Task<AwaitableEventInvoked> Invoked => m_source.Task;
+        public Task<AwaitableEventInvoked> Next => m_source.Task;
 
         /// <summary>
         /// Invoke a event.
@@ -27,9 +28,13 @@ namespace GrpcWpfSample.Common
         public void Invoke(object sender)
         {
             // Get current m_source and reset it atomically
-            var source = Interlocked.Exchange(ref m_source, new TaskCompletionSource<AwaitableEventInvoked>());
+            lock (m_lock)
+            {
+                var source = m_source;
+                m_source = new TaskCompletionSource<AwaitableEventInvoked>();
 
-            source.SetResult(new AwaitableEventInvoked(sender));
+                source.SetResult(new AwaitableEventInvoked(sender, m_source.Task));
+            }
         }
     }
 
@@ -40,11 +45,12 @@ namespace GrpcWpfSample.Common
     public class AwaitableEvent<T>
     {
         private TaskCompletionSource<AwaitableEventInvoked<T>> m_source = new TaskCompletionSource<AwaitableEventInvoked<T>>();
+        private readonly object m_lock = new object();
 
         /// <summary>
-        /// 'await' this property to await Invoke() called.
+        /// A task represents next Invoke() called event.
         /// </summary>
-        public Task<AwaitableEventInvoked<T>> Invoked => m_source.Task;
+        public Task<AwaitableEventInvoked<T>> Next => m_source.Task;
 
         /// <summary>
         /// Invoke a event with argument.
@@ -60,9 +66,13 @@ namespace GrpcWpfSample.Common
         public void Invoke(object sender, T value)
         {
             // Get current m_source and reset it atomically
-            var source = Interlocked.Exchange(ref m_source, new TaskCompletionSource<AwaitableEventInvoked<T>>());
+            lock (m_lock)
+            {
+                var source = m_source;
+                m_source = new TaskCompletionSource<AwaitableEventInvoked<T>>();
 
-            source.SetResult(new AwaitableEventInvoked<T>(sender, value));
+                source.SetResult(new AwaitableEventInvoked<T>(sender, value, m_source.Task));
+            }
         }
     }
 }

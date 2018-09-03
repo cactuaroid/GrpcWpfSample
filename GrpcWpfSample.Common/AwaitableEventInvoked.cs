@@ -1,4 +1,6 @@
-﻿namespace GrpcWpfSample.Common
+﻿using System.Threading.Tasks;
+
+namespace GrpcWpfSample.Common
 {
     /// <summary>
     /// Argument of AwaitableEvent.Invoked
@@ -10,9 +12,15 @@
         /// </summary>
         public object Sender { get; }
 
-        public AwaitableEventInvoked(object sender)
+        /// <summary>
+        /// A task represents next event invocation.
+        /// </summary>
+        public Task<AwaitableEventInvoked> Next { get; }
+
+        public AwaitableEventInvoked(object sender, Task<AwaitableEventInvoked> next)
         {
             Sender = sender;
+            Next = next;
         }
 
         public override string ToString() => $"{{{nameof(Sender)} = {Sender}}}";
@@ -34,10 +42,16 @@
         /// </summary>
         public T Args { get; }
 
-        public AwaitableEventInvoked(object sender, T args)
+        /// <summary>
+        /// A task represents next event invocation.
+        /// </summary>
+        public Task<AwaitableEventInvoked<T>> Next { get; }
+
+        public AwaitableEventInvoked(object sender, T args, Task<AwaitableEventInvoked<T>> next)
         {
             Sender = sender;
             Args = args;
+            Next = next;
         }
 
         public override string ToString() => $"{{{nameof(Sender)} = {Sender}, {nameof(Args)} = {Args}}}";
