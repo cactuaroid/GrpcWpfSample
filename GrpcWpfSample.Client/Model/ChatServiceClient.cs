@@ -2,7 +2,7 @@
 using Grpc.Core;
 using GrpcWpfSample.Common;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GrpcWpfSample.Client.Model
@@ -26,11 +26,9 @@ namespace GrpcWpfSample.Client.Model
         {
             using (var call = m_client.Subscribe(new Empty()))
             {
-                var stream = call.ResponseStream;
-                while (await stream.MoveNext())
-                {
-                    onRead(call.ResponseStream.Current);
-                }
+                await call.ResponseStream
+                    .ToAsyncEnumerable()
+                    .ForEachAsync((x) => onRead(x));
             }
         }
     }

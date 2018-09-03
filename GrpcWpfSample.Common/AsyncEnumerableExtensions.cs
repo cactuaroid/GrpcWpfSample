@@ -88,5 +88,16 @@ namespace GrpcWpfSample.Common
                     () => enumerator.Dispose());
             });
         }
+
+        /// <summary>
+        /// Create IAsyncEnumerable object from its enumerator.
+        /// </summary>
+        /// <typeparam name="T">object type</typeparam>
+        /// <param name="enumerator">enumerator</param>
+        /// <returns></returns>
+        public static IAsyncEnumerable<T> ToAsyncEnumerable<T>(this IAsyncEnumerator<T> enumerator)
+        {
+            return AsyncEnumerable.CreateEnumerable(() => enumerator);
+        }
     }
 }
