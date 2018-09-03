@@ -14,18 +14,18 @@ namespace GrpcWpfSample.Client.View
             DataContext = new ChatClientWindowViewModel();
         }
 
-        private void BodyTextBox_KeyDown(object sender, KeyEventArgs e)
+        private void BodyInput_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {
-                (DataContext as ChatClientWindowViewModel).WriteCommand.Execute(Body.Text);
-                Body.Text = "";
+                (DataContext as ChatClientWindowViewModel).WriteCommand.Execute(BodyInput.Text);
+                BodyInput.Text = "";
             }
         }
 
-        private void Body_Loaded(object sender, RoutedEventArgs e)
+        private void BodyInput_Loaded(object sender, RoutedEventArgs e)
         {
-            Body.Focus();
+            BodyInput.Focus();
         }
     }
 }

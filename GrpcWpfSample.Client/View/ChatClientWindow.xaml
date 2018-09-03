@@ -22,13 +22,13 @@
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="Name"
+            <TextBox x:Name="NameInput"
                      Grid.Column="0"
                      Text="{Binding Name}" />
-            <TextBox x:Name="Body"
+            <TextBox x:Name="BodyInput"
                      Grid.Column="1"
-                     KeyDown="BodyTextBox_KeyDown"
-                     Loaded="Body_Loaded" />
+                     KeyDown="BodyInput_KeyDown"
+                     Loaded="BodyInput_Loaded" />
         </Grid>
     </Grid>
 </Window>
