@@ -33,6 +33,10 @@ namespace GrpcWpfSample.Common
             }
         }
 
+        /// <summary>
+        /// IAsyncEnumerable implementation
+        /// </summary>
+        /// <returns>IAsyncEnumerator</returns>
         public IAsyncEnumerator<AsyncEnumerableEventInvoked> GetEnumerator()
         {
             AsyncEnumerableEventInvoked current = null;
@@ -81,6 +85,10 @@ namespace GrpcWpfSample.Common
             }
         }
 
+        /// <summary>
+        /// IAsyncEnumerable implementation
+        /// </summary>
+        /// <returns>IAsyncEnumerator</returns>
         public IAsyncEnumerator<AsyncEnumerableEventInvoked<T>> GetEnumerator()
         {
             AsyncEnumerableEventInvoked<T> current = null;
