@@ -3,9 +3,9 @@
 namespace GrpcWpfSample.Common
 {
     /// <summary>
-    /// Argument of AwaitableEvent.Invoked
+    /// Argument of AsyncEnumerableEvent.Invoked
     /// </summary>
-    public class AwaitableEventInvoked
+    public class AsyncEnumerableEventInvoked
     {
         /// <summary>
         /// Sender object if specified when invoked; otherwise null.
@@ -15,9 +15,9 @@ namespace GrpcWpfSample.Common
         /// <summary>
         /// A task represents next event invocation.
         /// </summary>
-        public Task<AwaitableEventInvoked> Next { get; }
+        public Task<AsyncEnumerableEventInvoked> Next { get; }
 
-        public AwaitableEventInvoked(object sender, Task<AwaitableEventInvoked> next)
+        public AsyncEnumerableEventInvoked(object sender, Task<AsyncEnumerableEventInvoked> next)
         {
             Sender = sender;
             Next = next;
@@ -27,10 +27,10 @@ namespace GrpcWpfSample.Common
     }
 
     /// <summary>
-    /// Argument of AwaitableEvent.Invoked
+    /// Argument of AsyncEnumerableEvent.Invoked
     /// </summary>
     /// <typeparam name="T">Event argument type</typeparam>
-    public class AwaitableEventInvoked<T>
+    public class AsyncEnumerableEventInvoked<T>
     {
         /// <summary>
         /// Sender object if specified when invoked; otherwise null.
@@ -45,9 +45,9 @@ namespace GrpcWpfSample.Common
         /// <summary>
         /// A task represents next event invocation.
         /// </summary>
-        public Task<AwaitableEventInvoked<T>> Next { get; }
+        public Task<AsyncEnumerableEventInvoked<T>> Next { get; }
 
-        public AwaitableEventInvoked(object sender, T args, Task<AwaitableEventInvoked<T>> next)
+        public AsyncEnumerableEventInvoked(object sender, T args, Task<AsyncEnumerableEventInvoked<T>> next)
         {
             Sender = sender;
             Args = args;

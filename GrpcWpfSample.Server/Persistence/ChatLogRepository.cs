@@ -9,7 +9,7 @@ namespace GrpcWpfSample.Server.Persistence
     public class ChatLogRepository : IChatLogRepository
     {
         private readonly List<ChatLog> m_storage = new List<ChatLog>();
-        private readonly AwaitableEvent<ChatLog> m_addedEvent = new AwaitableEvent<ChatLog>();
+        private readonly AsyncEnumerableEvent<ChatLog> m_addedEvent = new AsyncEnumerableEvent<ChatLog>();
 
         public void Add(ChatLog chatLog)
         {
@@ -21,11 +21,7 @@ namespace GrpcWpfSample.Server.Persistence
         {
             var oldLogs = m_storage.ToAsyncEnumerable();
 
-            var next = m_addedEvent.Next;
-            var newLogs = AsyncEnumerable.Repeat(null as ChatLog)
-                .SelectAsync(async (x) => await next)
-                .Do((x) => next = x.Next)
-                .Select((x) => x.Args);
+            var newLogs = m_addedEvent.Select((x) => x.Args);
 
             return oldLogs.Concat(newLogs);
         }
