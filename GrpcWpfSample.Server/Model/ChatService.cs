@@ -2,7 +2,6 @@
 using Grpc.Core;
 using GrpcWpfSample.Common;
 using System.Linq;
-using System.Reactive.Linq;
 using System.Threading.Tasks;
 
 namespace GrpcWpfSample.Server.Model
@@ -16,6 +15,7 @@ namespace GrpcWpfSample.Server.Model
         public override async Task Subscribe(Empty request, IServerStreamWriter<ChatLog> responseStream, ServerCallContext context)
         {
             await m_repository.GetAllAsync()
+                .ToAsyncEnumerable()
                 .ForEachTaskAsync(async (x) => await responseStream.WriteAsync(x));
 
             // never completes

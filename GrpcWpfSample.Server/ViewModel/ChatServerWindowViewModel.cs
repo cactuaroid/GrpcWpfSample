@@ -1,7 +1,7 @@
 ﻿using GrpcWpfSample.Server.Model;
+using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reactive.Linq;
 using System.Windows.Data;
 
 namespace GrpcWpfSample.Server.ViewModel
@@ -21,10 +21,8 @@ namespace GrpcWpfSample.Server.ViewModel
         public void StartServer()
         {
             m_chatServer.Start();
-
-            Task.Run(async () =>
-                await m_chatServer.GetAllAsync()
-                    .ForEachAsync((x) => ChatHistory.Add(x)));
+            m_chatServer.GetAllAsync()
+                .Subscribe((x) => ChatHistory.Add(x));
         }
     }
 }

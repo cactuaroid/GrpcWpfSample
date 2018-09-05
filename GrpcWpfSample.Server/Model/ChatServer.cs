@@ -1,8 +1,9 @@
 ﻿using Grpc.Core;
 using GrpcWpfSample.Common;
 using GrpcWpfSample.Server.Persistence;
-using System.Collections.Generic;
+using System;
 using System.Linq;
+using System.Reactive.Linq;
 
 namespace GrpcWpfSample.Server.Model
 {
@@ -21,7 +22,7 @@ namespace GrpcWpfSample.Server.Model
             server.Start();
         }
 
-        public IAsyncEnumerable<string> GetAllAsync()
+        public IObservable<string> GetAllAsync()
         {
             return m_repository.GetAllAsync().Select((x) => x.ToString());
         }

@@ -1,11 +1,11 @@
 ﻿using GrpcWpfSample.Common;
-using System.Collections.Generic;
+using System;
 
 namespace GrpcWpfSample.Server.Model
 {
     public interface IChatLogRepository
     {
         void Add(ChatLog chatLog);
-        IAsyncEnumerable<ChatLog> GetAllAsync();
+        IObservable<ChatLog> GetAllAsync();
     }
 }
