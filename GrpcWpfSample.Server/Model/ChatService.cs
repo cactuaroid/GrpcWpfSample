@@ -27,7 +27,8 @@ namespace GrpcWpfSample.Server.Model
             // It is same even if using event, because it is actually just invoking some methods. IObservable neither.
             // The only way to trigger writing to the stream which is awaited in different RPC calling is that
             // 'await' a signal (Task completion) on stream owner side and trigger the task completion on the other side.
-            // This is why I implement ChatLogRepository with AsyncAutoResetEvent.
+            // In other words, RPC methods have to pull events, not be pushed.
+            // This is why I implement Subscribe() using ToAsyncEnumerable() converting event sequence from push-based IObservable to pull-based IAsyncEnumerable.
 
             m_repository.Add(request);
 
