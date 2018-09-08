@@ -15,7 +15,7 @@ namespace GrpcWpfSample.Server.Persistence
         public void Add(ChatLog chatLog)
         {
             m_storage.Add(chatLog);
-            Added.Invoke(chatLog);
+            Added?.Invoke(chatLog);
         }
 
         public IObservable<ChatLog> GetAllAsync()
