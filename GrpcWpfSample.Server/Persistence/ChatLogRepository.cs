@@ -2,28 +2,25 @@
 using GrpcWpfSample.Server.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Reactive.Linq;
 
 namespace GrpcWpfSample.Server.Persistence
 {
+    [Export(typeof(IChatLogRepository))]
     public class ChatLogRepository : IChatLogRepository
     {
-        private readonly List<ChatLog> m_storage = new List<ChatLog>();
-        private event Action<ChatLog> Added;
+        private readonly List<ChatLog> m_storage = new List<ChatLog>(); // dummy on memory storage
 
         public void Add(ChatLog chatLog)
         {
             m_storage.Add(chatLog);
-            Added?.Invoke(chatLog);
         }
 
-        public IObservable<ChatLog> GetAllAsync()
+        public IEnumerable<ChatLog> GetAll()
         {
-            var oldLogs = m_storage.ToObservable();
-            var newLogs = Observable.FromEvent<ChatLog>((x) => Added += x, (x) => Added -= x);
-
-            return oldLogs.Concat(newLogs);
+            return m_storage.AsReadOnly();
         }
     }
 }

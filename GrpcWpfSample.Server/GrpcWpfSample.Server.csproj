@@ -99,10 +99,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\ChatServer.cs" />
+    <Compile Include="IService.cs" />
+    <Compile Include="MefManager.cs" />
+    <Compile Include="Model\ChatService.cs" />
     <Compile Include="ViewModel\ChatServerWindowViewModel.cs" />
     <Compile Include="Persistence\ChatLogRepository.cs" />
-    <Compile Include="Model\ChatService.cs" />
+    <Compile Include="Grpc\ChatServiceGrpcServer.cs" />
     <Compile Include="Model\IChatLogRepository.cs" />
     <Compile Include="View\ChatServerWindow.xaml.cs">
       <DependentUpon>ChatServerWindow.xaml</DependentUpon>

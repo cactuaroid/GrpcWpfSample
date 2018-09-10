@@ -16,7 +16,7 @@ namespace GrpcWpfSample.Server.View
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            (DataContext as ChatServerWindowViewModel).StartServer();
+            (DataContext as ChatServerWindowViewModel).SubscribeChatService();
         }
     }
 }

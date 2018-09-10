@@ -18,7 +18,7 @@ namespace GrpcWpfSample.Common
         /// <param name="source">source sequence</param>
         /// <param name="funcTask">foreach body</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
-        public static async Task ForEachTaskAsync<TSource>(this IAsyncEnumerable<TSource> source, Func<TSource, Task> funcTask)
+        public static async Task ForEachAsync<TSource>(this IAsyncEnumerable<TSource> source, Func<TSource, Task> funcTask)
         {
             using (var e = source.GetEnumerator())
             {
