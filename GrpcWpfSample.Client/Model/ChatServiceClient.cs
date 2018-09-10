@@ -3,6 +3,7 @@ using Grpc.Core;
 using GrpcWpfSample.Common;
 using System;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 
 namespace GrpcWpfSample.Client.Model
@@ -22,14 +23,14 @@ namespace GrpcWpfSample.Client.Model
             await m_client.WriteAsync(chatLog);
         }
 
-        public async Task Subscribe(Action<ChatLog> onRead)
+        public IObservable<ChatLog> ChatLogs()
         {
-            using (var call = m_client.Subscribe(new Empty()))
-            {
-                await call.ResponseStream
-                    .ToAsyncEnumerable()
-                    .ForEachAsync((x) => onRead(x));
-            }
+            var call = m_client.Subscribe(new Empty());
+
+            return call.ResponseStream
+                .ToAsyncEnumerable()
+                .ToObservable()
+                .Finally(() => call.Dispose());
         }
     }
 

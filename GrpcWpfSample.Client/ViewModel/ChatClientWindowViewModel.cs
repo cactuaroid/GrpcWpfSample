@@ -5,7 +5,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+using System.Reactive.Linq;
 using System.Windows.Data;
 
 namespace GrpcWpfSample.Client
@@ -37,9 +37,8 @@ namespace GrpcWpfSample.Client
 
         private void StartReadingChatServer()
         {
-            Task.Run(async () =>
-                await m_chatService.Subscribe((x) =>
-                    ChatHistory.Add($"{x.At.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}")));
+            m_chatService.ChatLogs()
+                .Subscribe((x) => ChatHistory.Add($"{x.At.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}"));
         }
 
         private async void WriteCommandExecute(string content)
