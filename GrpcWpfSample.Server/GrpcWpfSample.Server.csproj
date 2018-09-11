@@ -99,6 +99,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Infrastructure\Logger.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="MefManager.cs" />
     <Compile Include="Model\ChatService.cs" />

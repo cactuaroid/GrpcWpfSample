@@ -1,8 +1,7 @@
-﻿using GrpcWpfSample.Server.Model;
+﻿using GrpcWpfSample.Server.Infrastructure;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
-using System.Linq;
 using System.Reactive.Linq;
 using System.Windows.Data;
 
@@ -11,21 +10,20 @@ namespace GrpcWpfSample.Server.ViewModel
     public class ChatServerWindowViewModel
     {
         [Import]
-        private ChatService m_chatService = null;
+        private Logger m_logger = null;
 
-        public ObservableCollection<string> ChatHistory { get; private set; } = new ObservableCollection<string>();
+        public ObservableCollection<string> Logs { get; private set; } = new ObservableCollection<string>();
 
         public ChatServerWindowViewModel()
         {
             MefManager.Container.ComposeParts(this);
-            BindingOperations.EnableCollectionSynchronization(ChatHistory, new object());
+            BindingOperations.EnableCollectionSynchronization(Logs, new object());
         }
 
-        public void SubscribeChatService()
+        public void SubscribeLogger()
         {
-            m_chatService.GetChatLogsAsObservable()
-                .Select((x) => x.ToString())
-                .Subscribe((x) => ChatHistory.Add(x));
+            m_logger.GetLogsAsObservable()
+                .Subscribe((x) => Logs.Add(x));
         }
     }
 }

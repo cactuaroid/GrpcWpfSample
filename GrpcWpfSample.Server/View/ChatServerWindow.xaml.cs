@@ -11,12 +11,10 @@ namespace GrpcWpfSample.Server.View
         public ChatServerWindow()
         {
             InitializeComponent();
-            DataContext = new ChatServerWindowViewModel();
-        }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            (DataContext as ChatServerWindowViewModel).SubscribeChatService();
+            var viewModel = new ChatServerWindowViewModel();
+            viewModel.SubscribeLogger();
+            DataContext = viewModel;
         }
     }
 }
