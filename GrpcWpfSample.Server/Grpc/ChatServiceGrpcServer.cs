@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
+using Grpc.Core.Interceptors;
 using GrpcWpfSample.Common;
 using GrpcWpfSample.Server.Infrastructure;
 using GrpcWpfSample.Server.Model;
@@ -27,8 +28,15 @@ namespace GrpcWpfSample.Server.Rpc
         {
             m_server = new Grpc.Core.Server
             {
-                Services = { Chat.BindService(this) },
-                Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
+                Services =
+                {
+                    Chat.BindService(this)
+                        .Intercept(new IpAddressAuthentication())
+                },
+                Ports =
+                {
+                    new ServerPort("localhost", Port, ServerCredentials.Insecure)
+                }
             };
         }
 
