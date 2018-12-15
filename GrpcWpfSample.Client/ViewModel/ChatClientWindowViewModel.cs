@@ -14,7 +14,7 @@ namespace GrpcWpfSample.Client
     {
         private readonly ChatServiceClient m_chatService = new ChatServiceClient();
 
-        public ObservableCollection<string> ChatHistory { get; private set; } = new ObservableCollection<string>();
+        public ObservableCollection<string> ChatHistory { get; } = new ObservableCollection<string>();
         private readonly object m_chatHistoryLockObject = new object();
 
         public string Name
@@ -24,7 +24,7 @@ namespace GrpcWpfSample.Client
         }
         private string m_name = "anonymous";
 
-        public DelegateCommand<string> WriteCommand { get; private set; }
+        public DelegateCommand<string> WriteCommand { get; }
 
         public ChatClientWindowViewModel()
         {

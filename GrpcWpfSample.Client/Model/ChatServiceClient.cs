@@ -10,13 +10,9 @@ namespace GrpcWpfSample.Client.Model
 {
     class ChatServiceClient
     {
-        private readonly Chat.ChatClient m_client;
-
-        public ChatServiceClient()
-        {
-            var channel = new Channel("127.0.0.1:50052", ChannelCredentials.Insecure);
-            m_client = new Chat.ChatClient(channel);
-        }
+        private readonly Chat.ChatClient m_client =
+            new Chat.ChatClient(
+                new Channel("127.0.0.1:50052", ChannelCredentials.Insecure));
 
         public async Task Write(ChatLog chatLog)
         {

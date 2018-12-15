@@ -4,6 +4,7 @@ using Grpc.Core.Interceptors;
 using GrpcWpfSample.Common;
 using GrpcWpfSample.Server.Infrastructure;
 using GrpcWpfSample.Server.Model;
+using System;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Reactive.Linq;
@@ -31,11 +32,11 @@ namespace GrpcWpfSample.Server.Rpc
                 Services =
                 {
                     Chat.BindService(this)
-                        .Intercept(new IpAddressAuthentication())
+                        .Intercept(new IpAddressAuthenticator())
                 },
                 Ports =
                 {
-                    new ServerPort("localhost", Port, ServerCredentials.Insecure)
+                    new ServerPort("127.0.0.1", Port, ServerCredentials.Insecure)
                 }
             };
         }

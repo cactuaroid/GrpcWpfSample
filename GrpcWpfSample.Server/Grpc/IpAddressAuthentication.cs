@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace GrpcWpfSample.Server.Rpc
 {
-    public class IpAddressAuthentication : Interceptor
+    public class IpAddressAuthenticator : Interceptor
     {
         [Import]
         private Logger m_logger = null;
 
-        public IpAddressAuthentication() => MefManager.Container.ComposeParts(this);
+        public IpAddressAuthenticator() => MefManager.Container.ComposeParts(this);
 
-        private readonly HashSet<string> m_authorizedIps = new HashSet<string>()
+        private readonly HashSet<string> m_authenticatedIps = new HashSet<string>()
         {
             "127.0.0.1",
         };
@@ -23,9 +23,9 @@ namespace GrpcWpfSample.Server.Rpc
         {
             var ip = context.Peer.Split(':')[1].Trim();
 
-            context.Status = m_authorizedIps.Contains(ip) ? 
-                new Status(StatusCode.OK, $"Authorized peer: {context.Peer}") :
-                new Status(StatusCode.Unauthenticated, $"Invalid peer: {context.Peer}");
+            context.Status = m_authenticatedIps.Contains(ip) ? 
+                new Status(StatusCode.OK, $"Authenticated peer: {context.Peer}") :
+                new Status(StatusCode.Unauthenticated, $"Unauthenticated peer: {context.Peer}");
 
             m_logger.Info(context.Status);
         }
