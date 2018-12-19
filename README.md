@@ -5,12 +5,20 @@ Chat server-client applications as a sample implementation of gRPC on C# WPF. Re
 - *Simple RPC*: Client registers a message to server.
 - *Server-side streaming RPC*: Server streams messages to clients.
 
-##### Hexagonal architecture
+#### Architecture
 
 ![GrpcWpfSample_archtecture](https://github.com/cactuaroid/GrpcWpfSample/blob/master/GrpcWpfSample_archtecture.png)
 
 Note that  DB is not implemented but on-memory `List` is used as a placeholder.
 
+#### RPC Service Definition (chat.proto)
+
+```
+service Chat {
+  rpc Write(ChatLog) returns (google.protobuf.Empty) {}
+  rpc Subscribe(google.protobuf.Empty) returns (stream ChatLog) {}
+}
+```
 
 # How to run
 
