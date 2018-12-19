@@ -24,7 +24,7 @@ namespace GrpcWpfSample.Client.Model
             var call = m_client.Subscribe(new Empty());
 
             return call.ResponseStream
-                .ToAsyncEnumerable()
+                .ToAsyncEnumerable() // conversion for easy to consume
                 .ToObservable()
                 .Finally(() => call.Dispose());
         }

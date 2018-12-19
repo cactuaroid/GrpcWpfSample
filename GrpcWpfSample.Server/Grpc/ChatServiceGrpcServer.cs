@@ -54,6 +54,14 @@ namespace GrpcWpfSample.Server.Rpc
 
             context.CancellationToken.Register(() => m_logger.Info($"{context.Host} unsubscribed."));
 
+            // If subscribing IObservable, you have to block this method after the subscription.
+            // Completing the method means cancellation of the subscription.
+            // I prefer converting IObservable to IAsyncEnumerable to consume the sequense here
+            // because gRPC interface is in IAsyncEnumerable world.
+            // Note that the chat service model itself is in IObservable world
+            // because chat is naturally recognized as an event sequence.
+            // The conversion here is just for gRPC.
+
             await m_chatService.GetChatLogsAsObservable()
                 .ToAsyncEnumerable()
                 .ForEachAsync(async (x) => await responseStream.WriteAsync(x)); // runs sequentially
