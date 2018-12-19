@@ -13,7 +13,7 @@ Note that  DB is not implemented but on-memory `List` is used as a placeholder.
 
 ### RPC Service Definition (chat.proto)
 
-```
+```proto
 service Chat {
   rpc Write(ChatLog) returns (google.protobuf.Empty) {}
   rpc Subscribe(google.protobuf.Empty) returns (stream ChatLog) {}
