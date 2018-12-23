@@ -14,7 +14,7 @@ namespace GrpcWpfSample.Server
             var catalog = new AggregateCatalog();
 
             //Adds all the parts found in the same assembly
-            catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
+            //catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
             catalog.Catalogs.Add(new DirectoryCatalog(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
 
             //Create the CompositionContainer with the parts in the catalog

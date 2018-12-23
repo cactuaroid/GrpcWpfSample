@@ -5,7 +5,7 @@ using System.ComponentModel.Composition;
 using System.Reactive.Linq;
 using System.Windows.Data;
 
-namespace GrpcWpfSample.Server.ViewModel
+namespace GrpcWpfSample.Server.Wpf.ViewModel
 {
     public class ChatServerWindowViewModel
     {
