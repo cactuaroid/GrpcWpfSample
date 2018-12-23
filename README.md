@@ -22,4 +22,4 @@ service Chat {
 
 # How to run
 
-Start GrpcWpfSample.Server.exe first, then start GrpcWpfSample.Client.exe, write a message and hit enter key. Your message will be registered on server, and you can see it on the client. You can start multiple clients.
+Start GrpcWpfSample.Server.Wpf.exe (WPF on .NET Framework) or GrpcWpfSample.Server.Core.exe (Console app on .NET Core) first, then start GrpcWpfSample.Client.exe, write a message and hit enter key. Your message will be registered on server, and you can see it on the client. You can start multiple clients.
