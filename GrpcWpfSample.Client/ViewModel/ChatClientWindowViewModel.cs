@@ -37,8 +37,10 @@ namespace GrpcWpfSample.Client
 
         private void StartReadingChatServer()
         {
-            m_chatService.ChatLogs()
+            var disposable = m_chatService.ChatLogs()
                 .Subscribe((x) => ChatHistory.Add($"{x.At.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}"));
+
+            App.Current.Exit += (_, __) => disposable.Dispose();
         }
 
         private async void WriteCommandExecute(string content)

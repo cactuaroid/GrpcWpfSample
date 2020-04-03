@@ -29,5 +29,4 @@ namespace GrpcWpfSample.Client.Model
                 .Finally(() => call.Dispose());
         }
     }
-
 }

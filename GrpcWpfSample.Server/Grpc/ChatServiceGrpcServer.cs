@@ -52,21 +52,28 @@ namespace GrpcWpfSample.Server.Rpc
         {
             m_logger.Info($"{context.Host} subscribes.");
 
-            context.CancellationToken.Register(() => m_logger.Info($"{context.Host} unsubscribed."));
+            context.CancellationToken.Register(() => m_logger.Info($"{context.Host} cancels subscription."));
 
+            // Completing the method means disconnecting the stream by server side.
             // If subscribing IObservable, you have to block this method after the subscription.
-            // Completing the method means cancellation of the subscription.
             // I prefer converting IObservable to IAsyncEnumerable to consume the sequense here
             // because gRPC interface is in IAsyncEnumerable world.
             // Note that the chat service model itself is in IObservable world
             // because chat is naturally recognized as an event sequence.
-            // The conversion here is just for gRPC.
 
-            await m_chatService.GetChatLogsAsObservable()
-                .ToAsyncEnumerable()
-                .ForEachAsync(async (x) => await responseStream.WriteAsync(x)); // runs sequentially
-
-            // never completes
+            try
+            {
+                await m_chatService.GetChatLogsAsObservable()
+                    .ToAsyncEnumerable()
+                    .ForEachAwaitAsync(async (x) => await responseStream.WriteAsync(x), context.CancellationToken)
+                    .ConfigureAwait(false);
+            }
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (TaskCanceledException)
+            {
+                m_logger.Info($"{context.Host} unsubscribed.");
+            }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         public override Task<Empty> Write(ChatLog request, ServerCallContext context)
