@@ -68,12 +68,10 @@ namespace GrpcWpfSample.Server.Rpc
                     .ForEachAwaitAsync(async (x) => await responseStream.WriteAsync(x), context.CancellationToken)
                     .ConfigureAwait(false);
             }
-#pragma warning disable CA1031 // Do not catch general exception types
             catch (TaskCanceledException)
             {
                 m_logger.Info($"{context.Host} unsubscribed.");
             }
-#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         public override Task<Empty> Write(ChatLog request, ServerCallContext context)
