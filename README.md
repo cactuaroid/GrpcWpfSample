@@ -1,9 +1,14 @@
-# GrpcWpfSample
+# Overview
 
-Chat server-client applications as a sample implementation of gRPC on C# WPF. Read the official [quick start](https://grpc.io/docs/quickstart/csharp.html) and [guides](https://grpc.io/docs/guides/).
+Chat server-client applications as a sample implementation of gRPC on C#
+- WPF app on .NET Framework 4.8
+- Console app on .NET Core 2.0
 
+implements:
 - *Simple RPC*: Client registers a message to server.
 - *Server-side streaming RPC*: Server streams messages to clients.
+
+Read the official [quick start](https://grpc.io/docs/quickstart/csharp.html) and [guides](https://grpc.io/docs/guides/).
 
 ### Architecture
 
