@@ -1,2 +1,0 @@
-﻿The proto files here are well known types and are copied from nuget package 'Google.Protobuf.Tools' so that protoc can reference them.
-However, those csharp codes are contained in nuget package 'Google.Protobuf', no need to generate them.
