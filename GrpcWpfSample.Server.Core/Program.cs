@@ -1,10 +1,7 @@
-﻿using GrpcWpfSample.Server;
-using GrpcWpfSample.Server.Infrastructure;
+﻿using GrpcWpfSample.Server.Infrastructure;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace GrpcWpfSample.Serve.rCore
+namespace GrpcWpfSample.Server.Core
 {
     class Program
     {
