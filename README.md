@@ -27,4 +27,15 @@ service Chat {
 
 # How to run
 
-Start GrpcWpfSample.Server.Wpf.exe (WPF on .NET Framework) or GrpcWpfSample.Server.Core.exe (Console app on .NET Core) first, then start GrpcWpfSample.Client.exe, write a message and hit enter key. Your message will be registered on server, and you can see it on the client. You can start multiple clients.
+|EXE|TYPE|
+|:--|:--|
+|GrpcWpfSample.Server.Wpf.exe|Server on .NET Framework WPF app|
+|GrpcWpfSample.Server.Core.exe|Server on .NET Core Console app|
+|GrpcWpfSample.Client.Wpf.exe|Client on .NET Framework WPF app|
+|GrpcWpfSample.Client.Core.exe|Client on .NET Core Console app|
+
+1. Start a server.
+1. Start client(s). You can start multiple clients.
+   - For GrpcWpfSample.Client.Core.exe, write a name and hit enter key.
+1. On client, write a message and hit enter key.
+1. Your message will be registered on server, and you can see it on the client.
