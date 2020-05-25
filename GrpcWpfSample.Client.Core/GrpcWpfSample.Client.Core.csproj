@@ -1,16 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.Core" Version="2.27.0" />
-    <PackageReference Include="System.Interactive.Async" Version="4.1.1" />
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.0" />
     <PackageReference Include="System.Linq.Async" Version="4.1.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GrpcWpfSample.Client\GrpcWpfSample.Client.csproj" />
     <ProjectReference Include="..\GrpcWpfSample.Common\GrpcWpfSample.Common.csproj" />
   </ItemGroup>
 

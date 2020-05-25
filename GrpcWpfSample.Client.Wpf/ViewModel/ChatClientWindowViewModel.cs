@@ -1,14 +1,14 @@
 ﻿using Google.Protobuf.WellKnownTypes;
-using GrpcWpfSample.Client.Model;
 using GrpcWpfSample.Common;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.ObjectModel;
-using System.Reactive.Linq;
+using System.Linq;
+using System.Threading;
 using System.Windows.Data;
 
-namespace GrpcWpfSample.Client
+namespace GrpcWpfSample.Client.Wpf
 {
     public class ChatClientWindowViewModel : BindableBase
     {
@@ -37,10 +37,11 @@ namespace GrpcWpfSample.Client
 
         private void StartReadingChatServer()
         {
-            var disposable = m_chatService.ChatLogs()
-                .Subscribe((x) => ChatHistory.Add($"{x.At.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}"));
+            var cts = new CancellationTokenSource();
+            _ = m_chatService.ChatLogs()
+                .ForEachAsync((x) => ChatHistory.Add($"{x.At.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}"), cts.Token);
 
-            App.Current.Exit += (_, __) => disposable.Dispose();
+            App.Current.Exit += (_, __) => cts.Cancel();
         }
 
         private async void WriteCommandExecute(string content)

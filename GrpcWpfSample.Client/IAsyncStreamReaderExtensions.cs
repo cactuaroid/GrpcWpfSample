@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GrpcWpfSample.Client.Model
+namespace GrpcWpfSample.Client
 {
     public static class IAsyncStreamReaderExtensions
     {

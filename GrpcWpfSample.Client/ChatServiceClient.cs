@@ -1,14 +1,13 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using GrpcWpfSample.Common;
-using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Linq;
 using System.Threading.Tasks;
 
-namespace GrpcWpfSample.Client.Model
+namespace GrpcWpfSample.Client
 {
-    class ChatServiceClient
+    public class ChatServiceClient
     {
         private readonly Chat.ChatClient m_client =
             new Chat.ChatClient(
@@ -19,13 +18,15 @@ namespace GrpcWpfSample.Client.Model
             await m_client.WriteAsync(chatLog);
         }
 
-        public IObservable<ChatLog> ChatLogs()
+        public IAsyncEnumerable<ChatLog> ChatLogs()
         {
             var call = m_client.Subscribe(new Empty());
 
+            // I do not want to expose gRPC such as IAsyncStreamReader or AsyncServerStreamingCall.
+            // I also do not want to bother user of this class with asking to dispose the call object.
+
             return call.ResponseStream
-                .ToAsyncEnumerable() // conversion for easy to consume
-                .ToObservable()
+                .ToAsyncEnumerable()
                 .Finally(() => call.Dispose());
         }
     }

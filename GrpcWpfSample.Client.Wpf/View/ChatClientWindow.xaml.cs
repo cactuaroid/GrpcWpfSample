@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 
-namespace GrpcWpfSample.Client.View
+namespace GrpcWpfSample.Client.Wpf.View
 {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
