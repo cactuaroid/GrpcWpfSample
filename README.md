@@ -2,7 +2,8 @@
 
 Chat server-client applications as a sample implementation of gRPC on C#
 - WPF app on .NET Framework 4.8
-- Console app on .NET Core 2.0
+- Console app on .NET 5.0
+- Their common libraries on .NET Standard 2.0
 
 implements:
 - *Simple RPC*: Client registers a message to server.
