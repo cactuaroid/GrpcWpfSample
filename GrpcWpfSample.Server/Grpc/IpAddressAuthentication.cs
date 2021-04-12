@@ -23,11 +23,14 @@ namespace GrpcWpfSample.Server.Rpc
         {
             var ip = context.Peer.Split(':')[1].Trim();
 
-            context.Status = m_authenticatedIps.Contains(ip) ? 
+            context.Status = m_authenticatedIps.Contains(ip) ?
                 new Status(StatusCode.OK, $"Authenticated peer: {context.Peer}") :
                 new Status(StatusCode.Unauthenticated, $"Unauthenticated peer: {context.Peer}");
 
             m_logger.Info(context.Status);
+
+            // reject unauthenticated peer
+            if (context.Status.StatusCode == StatusCode.Unauthenticated) { throw new RpcException(context.Status); }
         }
 
         public override Task<TResponse> ClientStreamingServerHandler<TRequest, TResponse>(IAsyncStreamReader<TRequest> requestStream, ServerCallContext context, ClientStreamingServerMethod<TRequest, TResponse> continuation)
