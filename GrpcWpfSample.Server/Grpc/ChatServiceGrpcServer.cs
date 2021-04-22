@@ -81,9 +81,10 @@ namespace GrpcWpfSample.Server.Rpc
 
         public override async Task Subscribe(Empty request, IServerStreamWriter<ChatLog> responseStream, ServerCallContext context)
         {
-            m_logger.Info($"{context.Host} subscribes.");
+            var peer = context.Peer; // keep peer information because it is not available after disconnection
+            m_logger.Info($"{peer} subscribes.");
 
-            context.CancellationToken.Register(() => m_logger.Info($"{context.Host} cancels subscription."));
+            context.CancellationToken.Register(() => m_logger.Info($"{peer} cancels subscription."));
 
             // Completing the method means disconnecting the stream by server side.
             // If subscribing IObservable, you have to block this method after the subscription.
@@ -101,13 +102,13 @@ namespace GrpcWpfSample.Server.Rpc
             }
             catch (TaskCanceledException)
             {
-                m_logger.Info($"{context.Host} unsubscribed.");
+                m_logger.Info($"{peer} unsubscribed.");
             }
         }
 
         public override Task<Empty> Write(ChatLog request, ServerCallContext context)
         {
-            m_logger.Info($"{context.Host} {request}");
+            m_logger.Info($"{context.Peer} {request}");
 
             m_chatService.Add(request);
 
