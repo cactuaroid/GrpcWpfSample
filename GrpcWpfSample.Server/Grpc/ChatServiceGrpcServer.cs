@@ -38,6 +38,9 @@ namespace GrpcWpfSample.Server.Rpc
                 var keyPair = new KeyCertificatePair(serverCert, serverKey);
                 var credentials = new SslServerCredentials(new[] { keyPair }, clientCACert, SslClientCertificateRequestType.RequestAndRequireAndVerify);
 
+                // Client authentication is an option. You can remove it as follows if you only need SSL.
+                //var credentials = new SslServerCredentials(new[] { keyPair });
+
                 m_server = new Grpc.Core.Server
                 {
                     Services =
