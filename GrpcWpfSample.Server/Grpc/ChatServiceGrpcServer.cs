@@ -4,8 +4,8 @@ using Grpc.Core.Interceptors;
 using GrpcWpfSample.Common;
 using GrpcWpfSample.Server.Infrastructure;
 using GrpcWpfSample.Server.Model;
-using System;
 using System.ComponentModel.Composition;
+using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -27,18 +27,46 @@ namespace GrpcWpfSample.Server.Rpc
 
         public ChatServiceGrpcServer()
         {
-            m_server = new Grpc.Core.Server
+            var secure = false;
+
+            if (secure)
             {
-                Services =
+                // secure
+                var clientCACert = File.ReadAllText(@"C:\localhost_client.crt");
+                var serverCert = File.ReadAllText(@"C:\localhost_server.crt");
+                var serverKey = File.ReadAllText(@"C:\localhost_serverkey.pem");
+                var keyPair = new KeyCertificatePair(serverCert, serverKey);
+                var credentials = new SslServerCredentials(new[] { keyPair }, clientCACert, SslClientCertificateRequestType.RequestAndRequireAndVerify);
+
+                m_server = new Grpc.Core.Server
                 {
-                    Chat.BindService(this)
-                        .Intercept(new IpAddressAuthenticator())
-                },
-                Ports =
+                    Services =
+                    {
+                        Chat.BindService(this)
+                            .Intercept(new IpAddressAuthenticator())
+                    },
+                    Ports =
+                    {
+                        new ServerPort("localhost", Port, credentials)
+                    }
+                };
+            }
+            else
+            {
+                // insecure
+                m_server = new Grpc.Core.Server
                 {
-                    new ServerPort("127.0.0.1", Port, ServerCredentials.Insecure)
-                }
-            };
+                    Services =
+                    {
+                        Chat.BindService(this)
+                            .Intercept(new IpAddressAuthenticator())
+                    },
+                    Ports =
+                    {
+                        new ServerPort("localhost", Port, ServerCredentials.Insecure)
+                    }
+                };
+            }
         }
 
         public void Start()

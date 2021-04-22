@@ -18,7 +18,7 @@ namespace GrpcWpfSample.Client.Core
 
             Console.WriteLine($"Joined as {name}");
 
-            var chatServiceClient = new ChatServiceClient();
+            var chatServiceClient = new ChatServiceClient(false);
             var consoleLock = new object();
 
             // subscribe (asynchronous)

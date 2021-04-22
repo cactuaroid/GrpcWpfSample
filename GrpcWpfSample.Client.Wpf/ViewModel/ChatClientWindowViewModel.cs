@@ -12,7 +12,7 @@ namespace GrpcWpfSample.Client.Wpf
 {
     public class ChatClientWindowViewModel : BindableBase
     {
-        private readonly ChatServiceClient m_chatService = new ChatServiceClient();
+        private readonly ChatServiceClient m_chatService = new ChatServiceClient(false);
 
         public ObservableCollection<string> ChatHistory { get; } = new ObservableCollection<string>();
         private readonly object m_chatHistoryLockObject = new object();
