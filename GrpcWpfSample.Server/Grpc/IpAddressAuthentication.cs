@@ -3,6 +3,7 @@ using Grpc.Core.Interceptors;
 using GrpcWpfSample.Server.Infrastructure;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace GrpcWpfSample.Server.Rpc
@@ -17,20 +18,45 @@ namespace GrpcWpfSample.Server.Rpc
         private readonly HashSet<string> m_authenticatedIps = new HashSet<string>()
         {
             "127.0.0.1",
+            "::1"
         };
 
         private void VerifyPeer(ServerCallContext context)
         {
-            var ip = context.Peer.Split(':')[1].Trim();
-
-            context.Status = m_authenticatedIps.Contains(ip) ?
+            context.Status = TryTakeIpAddress(context.Peer, out var ip) && m_authenticatedIps.Contains(ip) ?
                 new Status(StatusCode.OK, $"Authenticated peer: {context.Peer}") :
                 new Status(StatusCode.Unauthenticated, $"Unauthenticated peer: {context.Peer}");
 
-            m_logger.Info(context.Status);
-
             // reject unauthenticated peer
-            if (context.Status.StatusCode == StatusCode.Unauthenticated) { throw new RpcException(context.Status); }
+            if (context.Status.StatusCode == StatusCode.Unauthenticated)
+            {
+                m_logger.Info(context.Status);
+                throw new RpcException(context.Status);
+            }
+        }
+
+        private bool TryTakeIpAddress(string peer, out string ipAddress)
+        {
+            // ex.
+            // "ipv4:127.0.0.1:12345"
+            // "ipv6:[::1]:12345"
+
+            var ipv4Match = Regex.Match(peer, @"^ipv4:(.+):");
+            if (ipv4Match.Success)
+            {
+                ipAddress = ipv4Match.Groups[1].Value;
+                return true;
+            }
+
+            var ipv6Match = Regex.Match(peer, @"^ipv6:\[(.+)\]");
+            if (ipv6Match.Success)
+            {
+                ipAddress = ipv6Match.Groups[1].Value;
+                return true;
+            }
+
+            ipAddress = "";
+            return false;
         }
 
         public override Task<TResponse> ClientStreamingServerHandler<TRequest, TResponse>(IAsyncStreamReader<TRequest> requestStream, ServerCallContext context, ClientStreamingServerMethod<TRequest, TResponse> continuation)
