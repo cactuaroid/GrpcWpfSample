@@ -27,6 +27,7 @@ namespace GrpcWpfSample.Server.Rpc
 
         public ChatServiceGrpcServer()
         {
+            // Locate required files and set true to enable SSL
             var secure = false;
 
             if (secure)

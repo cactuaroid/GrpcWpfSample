@@ -14,6 +14,7 @@ namespace GrpcWpfSample.Client
 
         public ChatServiceClient()
         {
+            // Locate required files and set true to enable SSL
             var secure = false;
 
             if (secure)
@@ -24,6 +25,9 @@ namespace GrpcWpfSample.Client
                 var clientKey = File.ReadAllText(@"C:\localhost_clientkey.pem");
                 var keyPair = new KeyCertificatePair(clientCert, clientKey);
                 var credentials = new SslCredentials(serverCACert, keyPair);
+
+                // Client authentication is an option. You can remove it as follows if you only need SSL.
+                //var credentials = new SslCredentials(serverCACert);
 
                 m_client = new Chat.ChatClient(
                     new Channel("localhost", 50052, credentials));
