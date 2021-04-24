@@ -26,7 +26,7 @@ service Chat {
 }
 ```
 
-# How to run
+# How to Run
 
 |Project|Type|
 |:--|:--|
@@ -40,3 +40,23 @@ service Chat {
    - For GrpcWpfSample.Client.Core, write a name and hit enter key.
 1. On client, write a message and hit enter key.
 1. Your message will be registered on server, and you can see it on the client.
+
+# How to Enable SSL
+
+See these classes. Locate required files and then change `var secure = true;` to enable SSL.
+
+- [ChatServiceGrpcServer.cs](https://github.com/cactuaroid/GrpcWpfSample/blob/master/GrpcWpfSample.Server/Grpc/ChatServiceGrpcServer.cs)
+- [ChatServiceClient.cs](https://github.com/cactuaroid/GrpcWpfSample/blob/master/GrpcWpfSample.Client/ChatServiceClient.cs)
+
+|File Name|Description|
+|:--|:--|
+|localhost_server.crt   |Server's certificate|
+|localhost_serverkey.pem|Private key of the server's certificate|
+|localhost_client.crt   |Client's certificate (optional)|
+|localhost_clientkey.pem|Private key of the client's certificate (optional)|
+
+- All these files have to be PEM format without enryption.
+- The server has to have the client's certificate or its CA certificate and vice versa. [Here](https://serverfault.com/questions/968343/why-do-i-need-a-certificate-to-establish-a-secure-grpc-connection-as-a-client) you can find an idea about this.
+- The sample implementation includes client authentication as well. You can disable it then you don't need client's certificate and its private key files. 
+- You have to set "localhost" as Common Name (CN) of the certificate for your test on localhost.
+- [XCA](https://hohnstaedt.de/xca/) is the one of the easy way to create the these files.
