@@ -57,6 +57,6 @@ See these classes. Locate required files and then change `var secure = true;` to
 
 - All these files have to be PEM format without enryption.
 - The server has to have the client's certificate or its CA certificate and vice versa. [Here](https://serverfault.com/questions/968343/why-do-i-need-a-certificate-to-establish-a-secure-grpc-connection-as-a-client) you can find an idea about this.
-- The sample implementation includes client authentication as well. You can disable it then you don't need client's certificate and its private key files. 
+- The sample implementation includes client authentication as well. You can disable it then you don't need client's certificate and its private key. 
 - You have to set "localhost" as Common Name (CN) of the certificate for your test on localhost.
 - [XCA](https://hohnstaedt.de/xca/) is the one of the easy way to create the these files.
