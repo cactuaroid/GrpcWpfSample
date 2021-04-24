@@ -12,8 +12,10 @@ namespace GrpcWpfSample.Client
     {
         private readonly Chat.ChatClient m_client;
 
-        public ChatServiceClient(bool secure)
+        public ChatServiceClient()
         {
+            var secure = false;
+
             if (secure)
             {
                 // create secure channel
