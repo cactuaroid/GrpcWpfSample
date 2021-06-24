@@ -1,6 +1,6 @@
 # Overview
 
-Chat server-client applications as a sample implementation of gRPC on C#
+Chat server-client applications as a sample implementation of [gRPC for C# (Grpc.Core)](https://www.nuget.org/packages/Grpc.Core)
 - WPF app on .NET Framework 4.8
 - Console app on .NET 5.0
 - Their common libraries on .NET Standard 2.0
