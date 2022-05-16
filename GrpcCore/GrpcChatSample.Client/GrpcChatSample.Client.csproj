@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GrpcWpfSample.Common\GrpcWpfSample.Common.csproj" />
+    <ProjectReference Include="..\GrpcChatSample.Common\GrpcChatSample.Common.csproj" />
   </ItemGroup>
 
 </Project>

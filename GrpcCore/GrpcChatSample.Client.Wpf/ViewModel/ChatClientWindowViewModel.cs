@@ -1,5 +1,5 @@
 ﻿using Google.Protobuf.WellKnownTypes;
-using GrpcWpfSample.Common;
+using GrpcChatSample.Common;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Data;
 
-namespace GrpcWpfSample.Client.Wpf
+namespace GrpcChatSample.Client.Wpf
 {
     public class ChatClientWindowViewModel : BindableBase
     {

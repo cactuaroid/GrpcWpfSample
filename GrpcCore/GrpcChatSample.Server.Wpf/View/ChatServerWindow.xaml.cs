@@ -1,7 +1,7 @@
-﻿using GrpcWpfSample.Server.Wpf.ViewModel;
+﻿using GrpcChatSample.Server.Wpf.ViewModel;
 using System.Windows;
 
-namespace GrpcWpfSample.Server.Wpf.View
+namespace GrpcChatSample.Server.Wpf.View
 {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック

@@ -1,11 +1,11 @@
-﻿using GrpcWpfSample.Common;
-using GrpcWpfSample.Server.Infrastructure;
+﻿using GrpcChatSample.Common;
+using GrpcChatSample.Server.Infrastructure;
 using System;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Reactive.Linq;
 
-namespace GrpcWpfSample.Server.Model
+namespace GrpcChatSample.Server.Model
 {
     [Export]
     public class ChatService

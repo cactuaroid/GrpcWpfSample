@@ -1,7 +1,7 @@
-﻿using GrpcWpfSample.Common;
+﻿using GrpcChatSample.Common;
 using System.Collections.Generic;
 
-namespace GrpcWpfSample.Server.Model
+namespace GrpcChatSample.Server.Model
 {
     public interface IChatLogRepository
     {

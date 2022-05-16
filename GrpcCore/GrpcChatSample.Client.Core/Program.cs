@@ -1,9 +1,9 @@
 ﻿using Google.Protobuf.WellKnownTypes;
-using GrpcWpfSample.Common;
+using GrpcChatSample.Common;
 using System;
 using System.Linq;
 
-namespace GrpcWpfSample.Client.Core
+namespace GrpcChatSample.Client.Core
 {
     class Program
     {

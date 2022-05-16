@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcWpfSample.Client", "GrpcCore\GrpcWpfSample.Client\GrpcWpfSample.Client.csproj", "{4C18B8B1-A3FF-4B2D-9357-38FEBE2C80B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcChatSample.Client", "GrpcCore\GrpcChatSample.Client\GrpcChatSample.Client.csproj", "{4C18B8B1-A3FF-4B2D-9357-38FEBE2C80B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcWpfSample.Client.Core", "GrpcCore\GrpcWpfSample.Client.Core\GrpcWpfSample.Client.Core.csproj", "{A7F7A387-2B77-4F28-8C22-46BE2DAD8BFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcChatSample.Client.Core", "GrpcCore\GrpcChatSample.Client.Core\GrpcChatSample.Client.Core.csproj", "{A7F7A387-2B77-4F28-8C22-46BE2DAD8BFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcWpfSample.Client.Wpf", "GrpcCore\GrpcWpfSample.Client.Wpf\GrpcWpfSample.Client.Wpf.csproj", "{E61E1FFA-CB32-45D8-A641-9A6454435E53}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcChatSample.Client.Wpf", "GrpcCore\GrpcChatSample.Client.Wpf\GrpcChatSample.Client.Wpf.csproj", "{E61E1FFA-CB32-45D8-A641-9A6454435E53}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcWpfSample.Common", "GrpcCore\GrpcWpfSample.Common\GrpcWpfSample.Common.csproj", "{AA56C6BE-16AA-406E-9082-4C59BC50045B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcChatSample.Common", "GrpcCore\GrpcChatSample.Common\GrpcChatSample.Common.csproj", "{AA56C6BE-16AA-406E-9082-4C59BC50045B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcWpfSample.Server", "GrpcCore\GrpcWpfSample.Server\GrpcWpfSample.Server.csproj", "{13983762-DC38-409C-99DF-B84DA4DD53E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcChatSample.Server", "GrpcCore\GrpcChatSample.Server\GrpcChatSample.Server.csproj", "{13983762-DC38-409C-99DF-B84DA4DD53E5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcWpfSample.Server.Core", "GrpcCore\GrpcWpfSample.Server.Core\GrpcWpfSample.Server.Core.csproj", "{34202FA2-CD2C-496F-B40B-23B64957BF00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcChatSample.Server.Core", "GrpcCore\GrpcChatSample.Server.Core\GrpcChatSample.Server.Core.csproj", "{34202FA2-CD2C-496F-B40B-23B64957BF00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcWpfSample.Server.Wpf", "GrpcCore\GrpcWpfSample.Server.Wpf\GrpcWpfSample.Server.Wpf.csproj", "{BF0E676C-7F7C-4967-918D-7900D46130B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcChatSample.Server.Wpf", "GrpcCore\GrpcChatSample.Server.Wpf\GrpcChatSample.Server.Wpf.csproj", "{BF0E676C-7F7C-4967-918D-7900D46130B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GrpcCore", "GrpcCore", "{42C146B0-0BEF-4B36-899A-97DEFAB3C7FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +56,15 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4C18B8B1-A3FF-4B2D-9357-38FEBE2C80B9} = {42C146B0-0BEF-4B36-899A-97DEFAB3C7FF}
+		{A7F7A387-2B77-4F28-8C22-46BE2DAD8BFB} = {42C146B0-0BEF-4B36-899A-97DEFAB3C7FF}
+		{E61E1FFA-CB32-45D8-A641-9A6454435E53} = {42C146B0-0BEF-4B36-899A-97DEFAB3C7FF}
+		{AA56C6BE-16AA-406E-9082-4C59BC50045B} = {42C146B0-0BEF-4B36-899A-97DEFAB3C7FF}
+		{13983762-DC38-409C-99DF-B84DA4DD53E5} = {42C146B0-0BEF-4B36-899A-97DEFAB3C7FF}
+		{34202FA2-CD2C-496F-B40B-23B64957BF00} = {42C146B0-0BEF-4B36-899A-97DEFAB3C7FF}
+		{BF0E676C-7F7C-4967-918D-7900D46130B9} = {42C146B0-0BEF-4B36-899A-97DEFAB3C7FF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8B17B619-CF07-4C3B-8780-1AA6C46EA00B}

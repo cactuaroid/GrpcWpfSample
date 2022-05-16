@@ -1,4 +1,4 @@
-﻿namespace GrpcWpfSample.Server
+﻿namespace GrpcChatSample.Server
 {
     public interface IService
     {

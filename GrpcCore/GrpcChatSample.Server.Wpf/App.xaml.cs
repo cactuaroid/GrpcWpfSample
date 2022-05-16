@@ -2,7 +2,7 @@
 using System.ComponentModel.Composition;
 using System.Windows;
 
-namespace GrpcWpfSample.Server.Wpf
+namespace GrpcChatSample.Server.Wpf
 {
     /// <summary>
     /// App.xaml の相互作用ロジック

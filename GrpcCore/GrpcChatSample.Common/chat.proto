@@ -4,9 +4,9 @@ syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
-option csharp_namespace = "GrpcWpfSample.Common";
+option csharp_namespace = "GrpcChatSample.Common";
 
-package GrpcWpfSample.Common;
+package GrpcChatSample.Common;
 
 service Chat {
   rpc Write(ChatLog) returns (google.protobuf.Empty) {}

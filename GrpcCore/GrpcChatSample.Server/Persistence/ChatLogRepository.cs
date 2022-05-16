@@ -1,12 +1,12 @@
-﻿using GrpcWpfSample.Common;
-using GrpcWpfSample.Server.Model;
+﻿using GrpcChatSample.Common;
+using GrpcChatSample.Server.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Reactive.Linq;
 
-namespace GrpcWpfSample.Server.Persistence
+namespace GrpcChatSample.Server.Persistence
 {
     [Export(typeof(IChatLogRepository))]
     public class ChatLogRepository : IChatLogRepository

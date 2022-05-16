@@ -1,12 +1,12 @@
 ﻿using Grpc.Core;
 using Grpc.Core.Interceptors;
-using GrpcWpfSample.Server.Infrastructure;
+using GrpcChatSample.Server.Infrastructure;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace GrpcWpfSample.Server.Rpc
+namespace GrpcChatSample.Server.Rpc
 {
     public class IpAddressAuthenticator : Interceptor
     {

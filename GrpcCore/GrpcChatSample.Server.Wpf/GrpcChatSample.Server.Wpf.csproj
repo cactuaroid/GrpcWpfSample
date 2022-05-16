@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BF0E676C-7F7C-4967-918D-7900D46130B9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>GrpcWpfSample.Server.Wpf</RootNamespace>
-    <AssemblyName>GrpcWpfSample.Server.Wpf</AssemblyName>
+    <RootNamespace>GrpcChatSample.Server.Wpf</RootNamespace>
+    <AssemblyName>GrpcChatSample.Server.Wpf</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -104,13 +104,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GrpcWpfSample.Common\GrpcWpfSample.Common.csproj">
+    <ProjectReference Include="..\GrpcChatSample.Common\GrpcChatSample.Common.csproj">
       <Project>{713dc02d-5126-4572-b99b-6ea776225f4e}</Project>
-      <Name>GrpcWpfSample.Common</Name>
+      <Name>GrpcChatSample.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GrpcWpfSample.Server\GrpcWpfSample.Server.csproj">
+    <ProjectReference Include="..\GrpcChatSample.Server\GrpcChatSample.Server.csproj">
       <Project>{daf16127-f1e0-4894-9b93-687698fa97c9}</Project>
-      <Name>GrpcWpfSample.Server</Name>
+      <Name>GrpcChatSample.Server</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,16 +1,16 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Grpc.Core.Interceptors;
-using GrpcWpfSample.Common;
-using GrpcWpfSample.Server.Infrastructure;
-using GrpcWpfSample.Server.Model;
+using GrpcChatSample.Common;
+using GrpcChatSample.Server.Infrastructure;
+using GrpcChatSample.Server.Model;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 
-namespace GrpcWpfSample.Server.Rpc
+namespace GrpcChatSample.Server.Rpc
 {
     [Export(typeof(IService))]
     public class ChatServiceGrpcServer : Chat.ChatBase, IService

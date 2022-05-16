@@ -1,7 +1,7 @@
-﻿using GrpcWpfSample.Server.Infrastructure;
+﻿using GrpcChatSample.Server.Infrastructure;
 using System;
 
-namespace GrpcWpfSample.Server.Core
+namespace GrpcChatSample.Server.Core
 {
     class Program
     {
