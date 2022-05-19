@@ -27,12 +27,6 @@ Read the official information
 - https://grpc.io/docs/guides/
 - https://docs.microsoft.com/ja-jp/aspnet/core/grpc/
 
-### Architecture
-
-![GrpcWpfSample_archtecture](https://github.com/cactuaroid/GrpcWpfSample/blob/master/GrpcWpfSample_archtecture.png)
-
-Note that DB is not implemented but on-memory `List` is used as a placeholder.
-
 ### RPC Service Definition (chat.proto)
 
 ```proto
@@ -41,6 +35,12 @@ service Chat {
   rpc Subscribe(google.protobuf.Empty) returns (stream ChatLog) {}
 }
 ```
+
+### Architecture
+
+![GrpcChatSample_archtecture](https://github.com/cactuaroid/GrpcWpfSample/blob/master/GrpcChatSample_archtecture.png)
+
+DB is not implemented but on-memory `List` is used as a placeholder.
 
 # How to Run
 
