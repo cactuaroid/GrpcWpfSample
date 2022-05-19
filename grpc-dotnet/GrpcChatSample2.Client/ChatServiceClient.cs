@@ -23,7 +23,7 @@ namespace GrpcChatSample2.Client
                 var httpHandler = new HttpClientHandler();
 
                 // Here you can disable validation for server certificate for your easy local test
-                // See https://docs.microsoft.com/ja-jp/aspnet/core/grpc/troubleshoot#call-a-grpc-service-with-an-untrustedinvalid-certificate
+                // See https://docs.microsoft.com/en-us/aspnet/core/grpc/troubleshoot#call-a-grpc-service-with-an-untrustedinvalid-certificate
                 httpHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
                 m_client = new Chat.ChatClient(
