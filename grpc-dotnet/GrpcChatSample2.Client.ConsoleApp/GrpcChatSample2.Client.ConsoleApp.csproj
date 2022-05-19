@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GrpcChatSample2.Client\GrpcChatSample2.Client.csproj" />
+    <ProjectReference Include="..\GrpcChatSample2.Common\GrpcChatSample2.Common.csproj" />
+  </ItemGroup>
+
+</Project>
