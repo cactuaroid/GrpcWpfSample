@@ -46,18 +46,11 @@ namespace GrpcChatSample2.Server.Grpc
                     listenOptions.Protocols = HttpProtocols.Http2;
 
                     // HTTPS is recommended
-                    listenOptions.UseHttps(@"C:\localhost_server.pfx", "password");
+                    //listenOptions.UseHttps(@"C:\localhost_server.pfx", "password");
                 });
             });
 
             m_app = builder.Build();
-
-            // See https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl#http-strict-transport-security-protocol-hsts
-            //if (!m_app.Environment.IsDevelopment())
-            //{
-            //    m_app.UseExceptionHandler("/Error");
-            //    m_app.UseHsts();
-            //}
 
             m_app.MapGrpcService<ChatGrpcService>();
 

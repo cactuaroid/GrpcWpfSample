@@ -13,7 +13,7 @@ namespace GrpcChatSample2.Client
             // See https://docs.microsoft.com/en-us/aspnet/core/grpc/client
 
             // To enable https, the server must be configured to use https.
-            var https = true;
+            var https = false;
 
             if (https)
             {
@@ -24,7 +24,7 @@ namespace GrpcChatSample2.Client
 
                 // Here you can disable validation for server certificate for your easy local test
                 // See https://docs.microsoft.com/en-us/aspnet/core/grpc/troubleshoot#call-a-grpc-service-with-an-untrustedinvalid-certificate
-                httpHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+                //httpHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
                 m_client = new Chat.ChatClient(
                     GrpcChannel.ForAddress("https://localhost:50052", new GrpcChannelOptions { HttpHandler = httpHandler }));
