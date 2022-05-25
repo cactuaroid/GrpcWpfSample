@@ -26,6 +26,7 @@ Read the official information
 - https://grpc.io/docs/languages/csharp/
 - https://grpc.io/docs/guides/
 - https://docs.microsoft.com/ja-jp/aspnet/core/grpc/
+- https://cloud.google.com/apis/design
 
 ### RPC Service Definition (chat.proto)
 
