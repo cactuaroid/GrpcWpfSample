@@ -16,9 +16,9 @@ namespace GrpcChatSample.Server.Rpc
         [Import]
         private ChatGrpcService m_service = null;
 
-        private readonly Grpc.Core.Server m_server;
+        private Grpc.Core.Server m_server;
 
-        public ChatGrpcServer()
+        public void Start()
         {
             // Locate required files and set true to enable SSL
             var secure = false;
@@ -64,12 +64,8 @@ namespace GrpcChatSample.Server.Rpc
                     }
                 };
             }
-        }
 
-        public void Start()
-        {
             m_server.Start();
-
             m_logger.Info("Started.");
         }
     }
