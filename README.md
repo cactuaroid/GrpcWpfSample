@@ -2,14 +2,19 @@
 
 Chat server-client applications as a sample implementation using [gRPC for .NET (Grpc.AspNetCore/Grpc.Net.Client)](https://github.com/grpc/grpc-dotnet) and [gRPC for C# (Grpc.Core)](https://www.nuget.org/packages/Grpc.Core).
 
+### Client
 |Project|Type|Target|Used Package|
 |:--|:--|:--|:--|
 |GrpcChatSample.Client.Core|Console app|.NET 6.0|Grpc.Core|
 |GrpcChatSample.Client.Wpf|WPF app|.NET Framework 4.8|Grpc.Core|
-|GrpcChatSample.Server.Core|Console app|.NET 6.0|Grpc.Core|
-|GrpcChatSample.Server.Wpf|WPF app|.NET Framework 4.8|Grpc.Core|
 |GrpcChatSample2.Client.ConsoleApp|Console app|.NET 6.0|Grpc.Net.Client|
 |GrpcChatSample2.Client.Wpf|WPF app|.NET 6.0|Grpc.Net.Client|
+
+### Server
+|Project|Type|Target|Used Package|
+|:--|:--|:--|:--|
+|GrpcChatSample.Server.Core|Console app|.NET 6.0|Grpc.Core|
+|GrpcChatSample.Server.Wpf|WPF app|.NET Framework 4.8|Grpc.Core|
 |GrpcChatSample2.Server.ConsoleApp|Console app|.NET 6.0|Grpc.AspNetCore|
 |GrpcChatSample2.Server.Wpf|WPF app|.NET 6.0|Grpc.AspNetCore|
 
