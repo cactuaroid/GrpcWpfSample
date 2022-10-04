@@ -23,7 +23,7 @@ Chat server-client applications as a sample implementation using [gRPC for .NET 
   - [Limited support](https://aka.ms/aspnet/grpc/netstandard) by Grpc.Net.Client but no sample in this repository.
 - ASP.NET Core apps are supported by both, but Grpc.AspNetCore/Grpc.Net.Client is recommended.
 - See https://grpc.io/blog/grpc-csharp-future/
-- In WPF project, Grpc.Tools has a known issue for compiling proto file. See https://github.com/grpc/grpc/issues/20402
+- You cannot put proto file in WPF project. See https://github.com/grpc/grpc/issues/20402
 
 Implements
 - *Simple RPC*: Client registers a message to server.
