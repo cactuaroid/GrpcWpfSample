@@ -3,7 +3,7 @@ using GrpcChatSample.Common;
 using System;
 using System.Linq;
 
-namespace GrpcChatSample.Client.Core
+namespace GrpcChatSample.Client.ConsoleApp
 {
     class Program
     {

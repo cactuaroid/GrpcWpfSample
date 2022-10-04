@@ -1,7 +1,7 @@
 ﻿using GrpcChatSample.Server.Infrastructure;
 using System;
 
-namespace GrpcChatSample.Server.Core
+namespace GrpcChatSample.Server.ConsoleApp
 {
     class Program
     {
