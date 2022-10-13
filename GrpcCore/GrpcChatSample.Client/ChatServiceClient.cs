@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
+using Grpc.Core.Interceptors;
 using GrpcChatSample.Common;
 using System.Collections.Generic;
 using System.IO;
@@ -30,13 +31,17 @@ namespace GrpcChatSample.Client
                 var credentials = new SslCredentials(serverCACert);
 
                 m_client = new Chat.ChatClient(
-                    new Channel("localhost", 50052, credentials));
+                    new Channel("localhost", 50052, credentials)
+                        .Intercept(new ClientIdInjector()) // 2nd
+                        .Intercept(new HeadersInjector())); // 1st
             }
             else
             {
                 // create insecure channel
                 m_client = new Chat.ChatClient(
-                    new Channel("localhost", 50052, ChannelCredentials.Insecure));
+                    new Channel("localhost", 50052, ChannelCredentials.Insecure)
+                        .Intercept(new ClientIdInjector()) // 2nd
+                        .Intercept(new HeadersInjector())); // 1st
             }
         }
 

@@ -40,7 +40,8 @@ namespace GrpcChatSample.Server.Rpc
                     Services =
                     {
                         Chat.BindService(m_service)
-                            .Intercept(new IpAddressAuthenticator())
+                            .Intercept(new ClientIdLogger()) // 2nd
+                            .Intercept(new IpAddressAuthenticator()) // 1st
                     },
                     Ports =
                     {
@@ -56,7 +57,8 @@ namespace GrpcChatSample.Server.Rpc
                     Services =
                     {
                         Chat.BindService(m_service)
-                            .Intercept(new IpAddressAuthenticator())
+                            .Intercept(new ClientIdLogger()) // 2nd
+                            .Intercept(new IpAddressAuthenticator()) // 1st
                     },
                     Ports =
                     {
