@@ -28,6 +28,8 @@ Chat server-client applications as a sample implementation using [gRPC for .NET 
 Implements
 - *Simple RPC*: Client registers a message to server.
 - *Server-side streaming RPC*: Server streams messages to clients.
+- *Interceptors*: Client puts its ID for each calls. Server checks client IP address and ID for each calls.
+- *Request Header R/W*: Client puts its ID on request header (metadata) of the call.
 
 Read the official information
 - https://grpc.io/docs/languages/csharp/
