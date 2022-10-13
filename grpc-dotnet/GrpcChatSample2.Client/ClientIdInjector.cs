@@ -4,51 +4,46 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GrpcChatSample.Client
+namespace GrpcChatSample2.Client
 {
     /// <summary>
-    /// For the case of method called without Metadata, context.Options.Headers is null. This interceptor is to set empty Metadata there.
-    ///   https://stackoverflow.com/questions/68442239/c-sharp-grpc-client-interceptor-set-authorization-header
-    /// Call this interceptor before setup request header in interceptor.
+    /// This interceptor is a sample for setting request header.
+    /// Call HeadersInjector before this interceptor.
     /// </summary>
-    public class HeadersInjector : Interceptor
+    public class ClientIdInjector : Interceptor
     {
-        private void SetHeaders<TRequest, TResponse>(ref ClientInterceptorContext<TRequest, TResponse> context) where TRequest : class where TResponse : class
+        private void SetClientId<TRequest, TResponse>(ClientInterceptorContext<TRequest, TResponse> context) where TRequest : class where TResponse : class
         {
-            if (context.Options.Headers == null)
-            {
-                var newOptions = context.Options.WithHeaders(new Metadata());
-                context = new ClientInterceptorContext<TRequest, TResponse>(context.Method, context.Host, newOptions);
-            }
+            context.Options.Headers.Add("client_id", "myid");
         }
 
         public override AsyncClientStreamingCall<TRequest, TResponse> AsyncClientStreamingCall<TRequest, TResponse>(ClientInterceptorContext<TRequest, TResponse> context, AsyncClientStreamingCallContinuation<TRequest, TResponse> continuation)
         {
-            SetHeaders(ref context);
+            SetClientId(context);
             return base.AsyncClientStreamingCall(context, continuation);
         }
 
         public override AsyncDuplexStreamingCall<TRequest, TResponse> AsyncDuplexStreamingCall<TRequest, TResponse>(ClientInterceptorContext<TRequest, TResponse> context, AsyncDuplexStreamingCallContinuation<TRequest, TResponse> continuation)
         {
-            SetHeaders(ref context);
+            SetClientId(context);
             return base.AsyncDuplexStreamingCall(context, continuation);
         }
 
         public override AsyncServerStreamingCall<TResponse> AsyncServerStreamingCall<TRequest, TResponse>(TRequest request, ClientInterceptorContext<TRequest, TResponse> context, AsyncServerStreamingCallContinuation<TRequest, TResponse> continuation)
         {
-            SetHeaders(ref context);
+            SetClientId(context);
             return base.AsyncServerStreamingCall(request, context, continuation);
         }
 
         public override AsyncUnaryCall<TResponse> AsyncUnaryCall<TRequest, TResponse>(TRequest request, ClientInterceptorContext<TRequest, TResponse> context, AsyncUnaryCallContinuation<TRequest, TResponse> continuation)
         {
-            SetHeaders(ref context);
+            SetClientId(context);
             return base.AsyncUnaryCall(request, context, continuation);
         }
 
         public override TResponse BlockingUnaryCall<TRequest, TResponse>(TRequest request, ClientInterceptorContext<TRequest, TResponse> context, BlockingUnaryCallContinuation<TRequest, TResponse> continuation)
         {
-            SetHeaders(ref context);
+            SetClientId(context);
             return base.BlockingUnaryCall(request, context, continuation);
         }
     }

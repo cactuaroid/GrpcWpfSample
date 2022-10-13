@@ -1,4 +1,5 @@
 ﻿using Google.Protobuf.WellKnownTypes;
+using Grpc.Core.Interceptors;
 using Grpc.Net.Client;
 using GrpcChatSample.Common;
 
@@ -27,13 +28,17 @@ namespace GrpcChatSample2.Client
                 //httpHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
                 m_client = new Chat.ChatClient(
-                    GrpcChannel.ForAddress("https://localhost:50052", new GrpcChannelOptions { HttpHandler = httpHandler }));
+                    GrpcChannel.ForAddress("https://localhost:50052", new GrpcChannelOptions { HttpHandler = httpHandler })
+                        .Intercept(new ClientIdInjector()) // 2nd
+                        .Intercept(new HeadersInjector())); // 1st
             }
             else
             {
                 // create insecure channel
                 m_client = new Chat.ChatClient(
-                    GrpcChannel.ForAddress("http://localhost:50052"));
+                    GrpcChannel.ForAddress("http://localhost:50052")
+                        .Intercept(new ClientIdInjector()) // 2nd
+                        .Intercept(new HeadersInjector())); // 1st
             }
         }
 

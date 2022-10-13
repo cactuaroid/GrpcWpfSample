@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GrpcChatSample.Client
+namespace GrpcChatSample2.Client
 {
     /// <summary>
     /// For the case of method called without Metadata, context.Options.Headers is null. This interceptor is to set empty Metadata there.

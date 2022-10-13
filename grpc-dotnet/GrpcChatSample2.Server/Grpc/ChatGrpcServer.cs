@@ -32,7 +32,8 @@ namespace GrpcChatSample2.Server.Grpc
             builder.Services.AddGrpc((options) =>
             {
                 // See https://docs.microsoft.com/en-us/aspnet/core/grpc/interceptors#server-interceptors
-                options.Interceptors.Add<IpAddressAuthenticator>();
+                options.Interceptors.Add<IpAddressAuthenticator>(); // 1st
+                options.Interceptors.Add<ClientIdLogger>(); // 2nd
             });
 
             // See https://docs.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#service-lifetimes

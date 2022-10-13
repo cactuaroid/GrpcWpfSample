@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace GrpcChatSample2.Server.Rpc
 {
+    /// <summary>
+    /// CAUTION: This is not secure because IP address can be impersonated. Use SSL for secure client authentication.
+    /// </summary>
     public class IpAddressAuthenticator : Interceptor
     {
         [Import]
