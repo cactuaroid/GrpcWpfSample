@@ -5,7 +5,7 @@ Chat server-client applications as a sample implementation using [gRPC for .NET 
 ### Client
 |Project|Type|Target|Used Package|
 |:--|:--|:--|:--|
-|GrpcChatSample.Client.Core|Console app|.NET 6.0|Grpc.Core|
+|GrpcChatSample.Client.ConsoleApp|Console app|.NET 6.0|Grpc.Core|
 |GrpcChatSample.Client.Wpf|WPF app|.NET Framework 4.8|Grpc.Core|
 |GrpcChatSample2.Client.ConsoleApp|Console app|.NET 6.0|Grpc.Net.Client|
 |GrpcChatSample2.Client.Wpf|WPF app|.NET 6.0|Grpc.Net.Client|
@@ -13,16 +13,17 @@ Chat server-client applications as a sample implementation using [gRPC for .NET 
 ### Server
 |Project|Type|Target|Used Package|
 |:--|:--|:--|:--|
-|GrpcChatSample.Server.Core|Console app|.NET 6.0|Grpc.Core|
+|GrpcChatSample.Server.ConsoleApp|Console app|.NET 6.0|Grpc.Core|
 |GrpcChatSample.Server.Wpf|WPF app|.NET Framework 4.8|Grpc.Core|
 |GrpcChatSample2.Server.ConsoleApp|Console app|.NET 6.0|Grpc.AspNetCore|
 |GrpcChatSample2.Server.Wpf|WPF app|.NET 6.0|Grpc.AspNetCore|
 
 - These projects are not made from ASP.NET Core gRPC service project template, but adding gRPC service/client on console/WPF app project.
-- .NET Framework apps are supported by Grpc.Core only.
+- .NET Framework apps are supported by Grpc.Core.
+  - [Limited support](https://aka.ms/aspnet/grpc/netstandard) by Grpc.Net.Client but no sample in this repository.
 - ASP.NET Core apps are supported by both, but Grpc.AspNetCore/Grpc.Net.Client is recommended.
 - See https://grpc.io/blog/grpc-csharp-future/
-- In WPF project, Grpc.Tools has a known issue for compiling proto file. See https://github.com/grpc/grpc/issues/20402
+- You cannot put proto file in WPF project. See https://github.com/grpc/grpc/issues/20402
 
 Implements
 - *Simple RPC*: Client registers a message to server.
