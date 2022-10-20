@@ -9,7 +9,7 @@ namespace GrpcChatSample2.Client
     public class ChatServiceClient : IDisposable
     {
         private readonly Chat.ChatClient m_client;
-        private readonly GrpcChannel m_channel; // If you create multiple client instances, the Channel should be shared.
+        private readonly GrpcChannel m_channel; // If you create multiple client instances, the GrpcChannel should be shared.
         private bool disposedValue;
 
         public ChatServiceClient()
