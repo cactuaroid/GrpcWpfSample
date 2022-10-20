@@ -15,7 +15,7 @@ namespace GrpcChatSample2.Client.ConsoleApp
             }
 
             Console.WriteLine($"Joined as {name}");
-            Console.WriteLine("Pres 'Esc' to exit.");
+            Console.WriteLine("Press 'Esc' to exit.");
 
             using var chatServiceClient = new ChatServiceClient();
             var consoleLock = new object();
