@@ -15,8 +15,9 @@ namespace GrpcChatSample2.Client.ConsoleApp
             }
 
             Console.WriteLine($"Joined as {name}");
+            Console.WriteLine("Pres 'Esc' to exit.");
 
-            var chatServiceClient = new ChatServiceClient();
+            using var chatServiceClient = new ChatServiceClient();
             var consoleLock = new object();
 
             // subscribe (asynchronous)
@@ -34,6 +35,8 @@ namespace GrpcChatSample2.Client.ConsoleApp
             while (true)
             {
                 var key = Console.ReadKey();
+
+                if (key.Key == ConsoleKey.Escape) { break; } // exit
 
                 // A key input starts writing mode
                 lock (consoleLock)

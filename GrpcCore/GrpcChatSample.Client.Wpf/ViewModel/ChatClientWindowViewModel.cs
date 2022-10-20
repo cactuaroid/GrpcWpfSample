@@ -10,7 +10,7 @@ using System.Windows.Data;
 
 namespace GrpcChatSample.Client.Wpf
 {
-    public class ChatClientWindowViewModel : BindableBase
+    public class ChatClientWindowViewModel : BindableBase, IDisposable
     {
         private readonly ChatServiceClient m_chatService = new ChatServiceClient();
 
@@ -23,6 +23,8 @@ namespace GrpcChatSample.Client.Wpf
             set { SetProperty(ref m_name, value); }
         }
         private string m_name = "anonymous";
+
+        private bool disposedValue;
 
         public DelegateCommand<string> WriteCommand { get; }
 
@@ -52,6 +54,25 @@ namespace GrpcChatSample.Client.Wpf
                 Content = content,
                 At = Timestamp.FromDateTime(DateTime.Now.ToUniversalTime()),
             });
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    m_chatService.Dispose();
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }

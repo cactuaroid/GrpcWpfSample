@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace GrpcChatSample2.Client.Wpf.View
@@ -26,6 +27,11 @@ namespace GrpcChatSample2.Client.Wpf.View
         private void BodyInput_Loaded(object sender, RoutedEventArgs e)
         {
             BodyInput.Focus();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            (DataContext as ChatClientWindowViewModel).Dispose();
         }
     }
 }

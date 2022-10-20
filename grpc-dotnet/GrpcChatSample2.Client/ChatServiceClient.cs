@@ -2,12 +2,15 @@
 using Grpc.Core.Interceptors;
 using Grpc.Net.Client;
 using GrpcChatSample.Common;
+using System.Threading.Channels;
 
 namespace GrpcChatSample2.Client
 {
-    public class ChatServiceClient
+    public class ChatServiceClient : IDisposable
     {
         private readonly Chat.ChatClient m_client;
+        private readonly GrpcChannel m_channel; // If you create multiple client instances, the Channel should be shared.
+        private bool disposedValue;
 
         public ChatServiceClient()
         {
@@ -27,18 +30,20 @@ namespace GrpcChatSample2.Client
                 // See https://docs.microsoft.com/en-us/aspnet/core/grpc/troubleshoot#call-a-grpc-service-with-an-untrustedinvalid-certificate
                 //httpHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
+                m_channel = GrpcChannel.ForAddress("https://localhost:50052", new GrpcChannelOptions { HttpHandler = httpHandler });
                 m_client = new Chat.ChatClient(
-                    GrpcChannel.ForAddress("https://localhost:50052", new GrpcChannelOptions { HttpHandler = httpHandler })
-                        .Intercept(new ClientIdInjector()) // 2nd
-                        .Intercept(new HeadersInjector())); // 1st
+                    m_channel
+                    .Intercept(new ClientIdInjector()) // 2nd
+                    .Intercept(new HeadersInjector())); // 1st
             }
             else
             {
                 // create insecure channel
+                m_channel = GrpcChannel.ForAddress("http://localhost:50052");
                 m_client = new Chat.ChatClient(
-                    GrpcChannel.ForAddress("http://localhost:50052")
-                        .Intercept(new ClientIdInjector()) // 2nd
-                        .Intercept(new HeadersInjector())); // 1st
+                    m_channel
+                    .Intercept(new ClientIdInjector()) // 2nd
+                    .Intercept(new HeadersInjector())); // 1st
             }
         }
 
@@ -57,6 +62,25 @@ namespace GrpcChatSample2.Client
             return call.ResponseStream
                 .ToAsyncEnumerable()
                 .Finally(() => call.Dispose());
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    m_channel.Dispose(); // disposes all of active calls.
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }
