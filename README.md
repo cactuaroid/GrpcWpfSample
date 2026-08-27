@@ -5,18 +5,18 @@ Chat server-client applications as a sample implementation using [gRPC for .NET 
 ### Client
 |Project|Type|Target|Used Package|
 |:--|:--|:--|:--|
-|GrpcChatSample.Client.ConsoleApp|Console app|.NET 6.0|Grpc.Core|
+|GrpcChatSample.Client.ConsoleApp|Console app|.NET 10.0|Grpc.Core|
 |GrpcChatSample.Client.Wpf|WPF app|.NET Framework 4.8|Grpc.Core|
-|GrpcChatSample2.Client.ConsoleApp|Console app|.NET 6.0|Grpc.Net.Client|
-|GrpcChatSample2.Client.Wpf|WPF app|.NET 6.0|Grpc.Net.Client|
+|GrpcChatSample2.Client.ConsoleApp|Console app|.NET 10.0|Grpc.Net.Client|
+|GrpcChatSample2.Client.Wpf|WPF app|.NET 10.0|Grpc.Net.Client|
 
 ### Server
 |Project|Type|Target|Used Package|
 |:--|:--|:--|:--|
-|GrpcChatSample.Server.ConsoleApp|Console app|.NET 6.0|Grpc.Core|
+|GrpcChatSample.Server.ConsoleApp|Console app|.NET 10.0|Grpc.Core|
 |GrpcChatSample.Server.Wpf|WPF app|.NET Framework 4.8|Grpc.Core|
-|GrpcChatSample2.Server.ConsoleApp|Console app|.NET 6.0|Grpc.AspNetCore|
-|GrpcChatSample2.Server.Wpf|WPF app|.NET 6.0|Grpc.AspNetCore|
+|GrpcChatSample2.Server.ConsoleApp|Console app|.NET 10.0|Grpc.AspNetCore|
+|GrpcChatSample2.Server.Wpf|WPF app|.NET 10.0|Grpc.AspNetCore|
 
 - These projects are not made from ASP.NET Core gRPC service project template, but adding gRPC service/client on console/WPF app project.
 - .NET Framework apps are supported by Grpc.Core.
