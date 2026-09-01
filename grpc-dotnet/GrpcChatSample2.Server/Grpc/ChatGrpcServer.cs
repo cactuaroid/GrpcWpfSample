@@ -32,13 +32,13 @@ namespace GrpcChatSample2.Server.Grpc
             builder.Services.AddGrpc((options) =>
             {
                 // See https://docs.microsoft.com/en-us/aspnet/core/grpc/interceptors#server-interceptors
-                options.Interceptors.Add<IpAddressAuthenticator>(); // 1st
-                options.Interceptors.Add<ClientIdLogger>(); // 2nd
+                options.Interceptors.Add<IpAddressAuthenticator>(m_logger); // 1st
+                options.Interceptors.Add<ClientIdLogger>(m_logger); // 2nd
             });
 
             // See https://docs.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#service-lifetimes
             builder.Services.AddSingleton(m_service);
-            builder.Services.AddSingleton(new IpAddressAuthenticator());
+            builder.Services.AddSingleton(new IpAddressAuthenticator(m_logger));
 
             builder.WebHost.ConfigureKestrel(serverOptions =>
             {

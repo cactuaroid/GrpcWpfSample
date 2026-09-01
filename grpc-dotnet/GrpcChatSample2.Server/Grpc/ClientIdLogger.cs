@@ -13,10 +13,10 @@ namespace GrpcChatSample2.Server
     /// </summary>
     public class ClientIdLogger : Interceptor
     {
-        [Import]
-        private Logger m_logger = null;
+        private Logger m_logger;
 
-        public ClientIdLogger() => MefManager.Container.ComposeParts(this);
+        // logger constructor injection instead of ComposeParts to avoid InvalidOperationException "Currently composing another batch in this ComposablePartExportProvider. Only one batch can be composed at a time."
+        public ClientIdLogger(Logger logger) => m_logger = logger;
 
         private void LogClientId(ServerCallContext context)
         {

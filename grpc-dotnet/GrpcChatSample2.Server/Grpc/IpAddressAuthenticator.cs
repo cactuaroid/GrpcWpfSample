@@ -13,10 +13,10 @@ namespace GrpcChatSample2.Server.Rpc
     /// </summary>
     public class IpAddressAuthenticator : Interceptor
     {
-        [Import]
-        private Logger m_logger = null;
+        private Logger m_logger;
 
-        public IpAddressAuthenticator() => MefManager.Container.ComposeParts(this);
+        // logger constructor injection instead of ComposeParts to avoid InvalidOperationException "Currently composing another batch in this ComposablePartExportProvider. Only one batch can be composed at a time."
+        public IpAddressAuthenticator(Logger logger) => m_logger = logger;
 
         private readonly HashSet<string> m_authenticatedIps = new HashSet<string>()
         {
